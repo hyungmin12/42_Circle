@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 22:00:28 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/12 22:00:33 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/07/12 23:45:21 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/07/12 23:49:03 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+void	*memchr(const void *s, int c, size_t n)
 {
-	int	i;
+	const unsigned char	*ptr_s;
+	unsigned char		value_c;
 
-	i = 0;
-	while (str[i])
+	ptr_s = (const unsigned char *)s;
+	value_c = (unsigned char)c;
+	while (n--)
 	{
-		i++;
+		if (*ptr_s == value_c)
+			return ((void *)ptr_s);
+		ptr_s++;
 	}
-	return (i);
+	return (0);
 }

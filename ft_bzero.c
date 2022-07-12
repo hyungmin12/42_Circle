@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 22:00:28 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/12 22:00:33 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/07/12 22:09:28 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/07/12 22:14:27 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+void	ft_bzero(void *s, size_t n)
 {
-	int	i;
+	size_t	i;
+	char	*mem;
 
 	i = 0;
-	while (str[i])
+	mem = (char *)p;
+	while (i < n)
 	{
+		mem[i] = 0;
 		i++;
 	}
-	return (i);
+	return ;
 }
