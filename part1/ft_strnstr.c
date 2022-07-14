@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 22:09:28 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/12 22:14:27 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/07/14 17:59:56 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/07/14 18:09:41 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_bzero(void *s, size_t n)
+#include "libft.h"
+
+char	*strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
-	char	*mem;
+	size_t	j;
 
 	i = 0;
-	mem = (char *)p;
-	while (i < n)
+	if (*needle == '\0')
+		return ((char *)haystack);
+	while (haystack[i] && i < len)
 	{
-		mem[i] = 0;
+		j = 0;
+		while (haystack[i + j] == needle[j] && i + j < len)
+		{
+			if (needle[j] == '\0')
+				return ((char *)&haystack[i]);
+			j++;
+		}
 		i++;
 	}
-	return ;
+	return (0);
 }

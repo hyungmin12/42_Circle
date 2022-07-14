@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 00:11:49 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/13 00:28:04 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/07/14 16:52:16 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	*ft_strchr(const char *s, int c)
 			return ((char *)s);
 		s++;
 	}
-
 	if (c == '\0')
 		return ((char *)s);
 	return (0);
