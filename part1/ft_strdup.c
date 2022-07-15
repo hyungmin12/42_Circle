@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:24:51 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/14 18:30:10 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/07/15 14:51:04 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strdup(const char *s1)
 	if (s1 == '\0')
 		return (NULL);
 	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1))
-	if (!str)
+		if (!str)
 		return (NULL);
 	while (s1[i])
 	{
