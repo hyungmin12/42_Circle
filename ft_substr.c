@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlcpy.c                                          :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/13 00:00:03 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/13 00:02:54 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/07/15 14:53:52 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/07/18 15:17:24 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+#include"libft.h"
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
+	unsigned int	i;
+	unsigned int	j;
+	char			*s2;
 
 	i = 0;
-	while (i + 1 < dstsize && src[i])
-		dst[i++] = src[i++];
-	dst[i] = '\0';
-	while (src[i])
+	j = 0;
+	if (!s)
+		return (NULL);
+	s2 = (char *)malloc(sizeof(char) * (len + 1));
+	if (!s2)
+		return (NULL);
+	while (s[i])
+	{
+		if (i >= start && j < len)
+		{
+			s2[j] = s[i];
+			j++;
+		}
 		i++;
-	return (i);
+	}
+	return (s2);
 }

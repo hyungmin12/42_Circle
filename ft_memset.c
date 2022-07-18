@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 23:32:05 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/12 23:44:56 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/07/12 22:01:55 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/07/18 15:01:18 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+#include "libft.h"
+
+void	*ft_memset(void *p, int c, size_t len)
 {
-	unsigned char		*tmp_dst;
-	const unsigned char	*tmp_src;
-	size_t				i;
+	unsigned int	i;
+	char			*mem;
 
 	i = 0;
-	tmp_dst = (unsigned char *)dst;
-	tmp_src = (const unsigned char *)src;
-	if (tmp_dst <= tmp_src)
-		while (len--)
-			tmp_dst[i++] = tmp_src[i++];
-	else
+	mem = (char *)p;
+	while (i < len)
 	{
-		tmp_dst += (len - 1);
-		tmp_src += (len - 1);
-		while (len--)
-		{
-			tmp_dst[i] = tmp_src[i];
-			i--;
-		}
+		mem[i] = (unsigned char)c;
+		i++;
 	}
-	return (dst);
+	return ((void *)mem);
 }

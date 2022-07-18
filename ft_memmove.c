@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 14:53:52 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/15 15:12:15 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/07/12 23:32:05 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/07/18 15:06:05 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+#include "libft.h"
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t	i;
-	size_t	j;
-	char	*s2;
+	unsigned char		*tmp_dst;
+	const unsigned char	*tmp_src;
+	unsigned int				i;
 
 	i = 0;
-	j = 0;
-	if (!s)
-		return (NULL);
-	s2 = (char *)malloc(sizeof(char) * (len + 1));
-	if (!s2)
-		return (NULL);
-	while (s[i])
-	{
-		if (i >= start && j < len)
+	tmp_dst = (unsigned char *)dst;
+	tmp_src = (const unsigned char *)src;
+	if (tmp_dst <= tmp_src)
+		while (len--)
 		{
-			s2[j] = s[i];
-			j++;
+			tmp_dst[i] = tmp_src[i];
+			i++;
 		}
-		i++;
+	else
+	{
+		tmp_dst += (len - 1);
+		tmp_src += (len - 1);
+		while (len--)
+		{
+			tmp_dst[i] = tmp_src[i];
+			i--;
+		}
 	}
-	return (s2);
+	return (dst);
 }

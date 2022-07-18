@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/14 17:27:12 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/14 17:45:32 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/07/12 23:45:21 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/07/18 15:15:53 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	dst_l;
-	size_t	src_l;
-	size_t	i;
+	const unsigned char	*ptr_s;
+	unsigned char		value_c;
 
-	i = 0;
-	dst_l = ft_strlen(dst);
-	src_l = ft_strlen(src);
-	if (dstsize < dst_l + 1)
-		return (dstsize + src_l);
-	while (src[i] && dst_l + 1 + i < size)
+	ptr_s = (const unsigned char *)s;
+	value_c = (unsigned char)c;
+	while (n--)
 	{
-		dst[dst_l + i] = src[i];
-		i++;
+		if (*ptr_s == value_c)
+			return ((void *)ptr_s);
+		ptr_s++;
 	}
-	dst[dst_l + i] = '\0';
-	return (dst_l + src_l);
+	return (0);
 }

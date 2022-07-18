@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 23:53:35 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/12 23:57:15 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/07/12 22:54:27 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/07/18 15:03:31 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
-{
-	const unsigned char	*p_s1;
-	const unsigned char	*p_s2;
+#include "libft.h"
 
-	p_s1 = (const unsigned char *)s1;
-	p_s2 = (const unsigned char *)s2;
-	while (n--)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+{
+	unsigned char		*tmp_dst;
+	const unsigned char	*tmp_src;
+	unsigned int				i;
+
+	i = 0;
+	tmp_dst = (unsigned char *)dst;
+	tmp_src = (const unsigned char *)src;
+	while (i < n)
 	{
-		if (*p_s1 != *p_s2)
-			return (*p_s1 - *p_s2);
-		p_s1++;
-		p_s2++;
+		tmp_dst[i] = tmp_src[i];
+		if (tmp_dst[i] == (unsigned char)c)
+			return (tmp_dst + 1 + i);
+		i++;
 	}
 	return (0);
 }
