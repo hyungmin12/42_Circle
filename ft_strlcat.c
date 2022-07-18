@@ -6,13 +6,13 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:27:12 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/18 15:16:54 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/07/18 17:58:43 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	unsigned int	dst_l;
 	unsigned int	src_l;
