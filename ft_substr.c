@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:53:52 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/18 15:17:24 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/07/31 19:39:54 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
+	char			*cpy;
 	unsigned int	i;
 	unsigned int	j;
-	char			*s2;
 
 	i = 0;
 	j = 0;
-	if (!s)
+	if (s == NULL)
 		return (NULL);
-	s2 = (char *)malloc(sizeof(char) * (len + 1));
-	if (!s2)
+	if ((unsigned int)ft_strlen(s) < start)
+		return (ft_strdup("\0"));
+	cpy = (char *)malloc(sizeof(char) * (len + 1));
+	if (!cpy)
 		return (NULL);
-	while (s[i])
+	while (s[i] && 0 < len)
 	{
-		if (i >= start && j < len)
-		{
-			s2[j] = s[i];
-			j++;
-		}
+		cpy[j++] = s[start++];
+		len--;
 		i++;
 	}
-	return (s2);
+	cpy[j] = '\0';
+	return (cpy);
 }

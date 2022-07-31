@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 17:18:02 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/15 17:39:01 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/07/31 19:02:06 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ void	ft_putstr_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
-	if (fd < 0)
-		return ;
 	while (s[i])
-		write(fd, &s[i++], 1);
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
 }

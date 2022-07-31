@@ -6,13 +6,13 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 16:54:27 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/14 17:21:01 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/07/31 18:38:17 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_atoi(const char *str)
 {
-	long long	ret;
+	unsigned long int	ret;
 	int			i;
 	int			sign;
 
@@ -33,6 +33,10 @@ int	ft_atoi(const char *str)
 		ret = ret * 10;
 		ret += str[i] - '0';
 		i++;
+		if (ret > 2147483647 && sign == 1)
+			return (-1);
+		if (ret > 2147483648 && sign == -1)
+			return (0);
 	}
 	return (ret * sign);
 }

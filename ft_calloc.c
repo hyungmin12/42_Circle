@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:23:26 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/18 15:11:04 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/07/31 19:15:13 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*p;
+	void *tmp;
 
-	p = (void *)malloc(size * count);
-	if (!(p))
-		return (NULL);
-	ft_bzero(p, (size * count));
-	return (p);
+	tmp = (void *)malloc(size * count);
+	if (tmp == 0)	//메모리가 부족한 경우에 대해서 NULL이 반환되는지 체크.
+		return (0);
+	ft_memset(tmp, 0, size * count);
+	return (tmp);
 }

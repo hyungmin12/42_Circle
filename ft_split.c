@@ -5,87 +5,89 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 16:36:13 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/18 15:27:08 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/07/31 19:54:40 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/07/31 19:55:51 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-int	ft_tab_count(char const *s, char c)
+char	*ft_strndup(const char *s, size_t n)
 {
-	int	i;
-	int	count;
-	int	tmp;
+	size_t	i;
+	char	*str;
 
 	i = 0;
-	count = 0;
-	tmp = 0;
-	if (s == 0)
-		return (0);
+	str = NULL;
+	if (n == 0)
+		return (NULL);
+	str = (char *)malloc(sizeof(char) * (n + 1));
+	if (str == 0)
+		return (NULL);
+	while (i < n)
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+//list내부의 할당된 저장공간들을 모두 free해주고 list도 free해줌
+char	**ft_freeall(char **list)
+{
+	size_t	j;
+
+	j = 0;
+	while (list[j])
+	{
+		free(list[j]);
+		j++;
+	}
+	free(list);
+	return (NULL);
+}
+
+//문자열 s를 c문자를 기준으로 나누었을때 총 몇개의 저장공간이 필요한지 구하는 함수
+size_t	ft_wordcount(char const *s, char c)
+{
+	size_t	listsize;
+	size_t	i;
+
+	i = 0;
+	listsize = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] == c)
-			tmp = 0;
-		else if (tmp == 0)
-		{
-			tmp = 1;
-			count++;
-		}
+		if ((i == 0 && s[i] != c) || \
+		(s[i] == c && s[i + 1] != '\0' && s[i + 1] != c))
+			listsize++;
 		i++;
 	}
-	return (count);
-}
-
-int	ft_tab_len(char const *s, char c, int i)
-{
-	int	len;
-
-	len = 0;
-	while (s[i] != '\0' && s[i] != c)
-	{
-		i++;
-		len++;
-	}
-	return (len);
-}
-
-char	**ft_tab_free(char const **s, int i)
-{
-	while (i > 0)
-	{
-		i--;
-		free((void *)s[i]);
-	}
-	free(s);
-	return (NULL);
+	return (listsize);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	**new;
+	char	**strlist;
+	size_t	i;
+	size_t	k;
+	size_t	save;
 
 	i = 0;
-	j = 0;
-	new = (char **)malloc(sizeof(char *) * (ft_tab_count(s, c) + 1));
-	if (!(new))
+	k = 0;
+	strlist = (char **)malloc(sizeof(char *) * (ft_wordcount(s, c) + 1));
+	if (!strlist)
 		return (NULL);
-	while (s[i] != '\0' && j < ft_tab_count(s, c))
+	while (i < ft_wordcount(s, c) && s[k] != '\0')
 	{
-		while (s[i] == c)
-			i++;
-		k = 0;
-		new[j] = (char *)malloc(ft_tab_len(s, c, i) + 1);
-		if (!(new[i]))
-			return (ft_tab_free((char const **)new, j));
-		while (s[i] != '\0' && s[i] != c)
-			new[j][k++] = s[i++];
-		new[j][k] = '\0';
-		j++;
+		while (s[k] == c)
+			k++;
+		save = k;
+		while (s[k] != c && s[k] != '\0')
+			k++;
+		strlist[i] = ft_strndup(&s[save], k - save);
+		if (strlist[i++] == 0)
+			return (ft_freeall(strlist));
 	}
-	new[j] = 0;
-	return (new);
+	strlist[i] = NULL;
+	return (strlist);
 }

@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:24:51 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/18 15:19:08 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/07/31 19:30:15 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 
 char	*ft_strdup(const char *s1)
 {
-	char			*str;
-	unsigned int	i;
+	char		*cpy;
+	int		i;
+	int		len;
 
+	cpy = NULL;
 	i = 0;
-	if (s1 == 0)
+	len = ft_strlen(s1);
+	cpy = (char *)ft_calloc(len + 1, sizeof(char));
+	if (!cpy)
 		return (NULL);
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (!str)
-		return (NULL);
-	while (s1[i])
+	while (i < len)
 	{
-		str[i] = s1[i];
+		cpy[i] = s1[i];
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	cpy[i] = '\0';
+	return (cpy);
 }
