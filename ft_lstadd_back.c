@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 16:23:27 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/18 17:39:13 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/08/03 16:42:02 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,13 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*last_list;
+	t_list	*last_lst;
 
-	last_list = *lst;
-	if (!lst || !new)
-		return ;
-	else if (*lst && !new)
+	if (*lst == NULL)
 	{
 		*lst = new;
 		return ;
 	}
-	while((*lst)->next)
-	{
-		*lst = (*lst)->next;
-	}
-	(*lst)->next = new;
-	*lst = last_list;
+	last_lst = ft_lstlast(*lst);
+	last_lst->next = new;
 }
