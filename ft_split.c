@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 17:02:44 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/08/03 17:37:43 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/08/08 17:40:22 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ char	**split(char **ret, char const *s, char c, int num)
 			k++;
 			word_len++;
 		}
-		if (!(ret[i] = (char *)malloc(sizeof(char) * (word_len + 1))))
+		ret[i] = (char *)malloc(sizeof(char) * (word_len + 1));
+		if (!ret)
 			return (NULL);
 		make_word(ret[i], s, k, word_len);
 		word_len = 0;
@@ -78,13 +79,13 @@ char	**split(char **ret, char const *s, char c, int num)
 
 char	**ft_split(char const *s, char c)
 {
+	char	**ret;
 	int		num;
-	char		**ret;
 
 	if (s == 0)
 		return (NULL);
 	num = word_cnt(s, c);
-	ret = (char **)malloc(sizeof(char *) * (num + 1))
+	ret = (char **)malloc(sizeof(char *) * (num + 1));
 	if (!ret)
 		return (NULL);
 	split(ret, s, c, num);

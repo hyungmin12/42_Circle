@@ -6,32 +6,32 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 16:54:27 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/31 18:38:17 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/08/08 17:42:40 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int	ft_atoi(const char *str)
 {
-	unsigned long int	ret;
-	int			i;
-	int			sign;
+	int					sign;
+	int					i;
+	unsigned long int		ret;
 
 	i = 0;
-	ret = 0;
 	sign = 1;
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'
-		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+	ret = 0;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\v' || str[i] == '\f'
+		|| str[i] == '\r' || str[i] == '\t')
 		i++;
-	while (str[i] == '-' || str[i] == '+')
+	if (str[i] == '+' || str[i] == '-')
 	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
+		if (str[i++] == '-')
+			sign = sign * -1;
 	}
-	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		ret = ret * 10;
-		ret += str[i] - '0';
+		ret = ret * 10 + str[i] - '0';
 		i++;
 		if (ret > 2147483647 && sign == 1)
 			return (-1);

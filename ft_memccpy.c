@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 22:54:27 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/18 15:03:31 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/08/07 00:54:00 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
 	unsigned char		*tmp_dst;
 	const unsigned char	*tmp_src;
-	unsigned int				i;
+	unsigned int		i;
 
 	i = 0;
 	tmp_dst = (unsigned char *)dst;

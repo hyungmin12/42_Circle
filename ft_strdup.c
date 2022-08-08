@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:24:51 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/31 19:30:15 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/08/08 17:40:41 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 char	*ft_strdup(const char *s1)
 {
 	char		*cpy;
-	int		i;
-	int		len;
+	int			i;
+	int			len;
 
 	cpy = NULL;
 	i = 0;

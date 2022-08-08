@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 15:15:45 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/18 15:19:54 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/08/07 00:53:18 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	unsigned int	len_s1;
 	unsigned int	len_s2;
 	unsigned int	i;
-	char	*str;
+	char		*str;
 
 	i = 0;
 	len_s1 = ft_strlen(s1);

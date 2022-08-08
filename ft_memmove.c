@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 23:32:05 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/07/31 18:23:00 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/08/07 01:11:44 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	{
 		while (0 < len--)
 			tmp_dst[len] = tmp_src[len];
-
 	}
 	return (tmp_dst);
 }
