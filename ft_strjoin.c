@@ -17,7 +17,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	unsigned int	len_s1;
 	unsigned int	len_s2;
 	unsigned int	i;
-	char		*str;
+	char			*str;
 
 	i = 0;
 	len_s1 = ft_strlen(s1);
