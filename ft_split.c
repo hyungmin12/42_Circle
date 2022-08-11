@@ -12,29 +12,6 @@
 
 #include "libft.h"
 
-int	word_cnt(char const *s, char c)
-{
-	int	i;
-	int	cnt;
-
-	i = 0;
-	cnt = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-			i++;
-		else
-		{
-			cnt++;
-			while (s[i] && s[i] != c)
-			{
-				i++;
-			}
-		}
-	}
-	return (cnt);
-}
-
 char	*make_word(char *word, char const *s, int k, int word_len)
 {
 	int		i;
@@ -75,6 +52,29 @@ char	**split(char **ret, char const *s, char c, int num)
 	}
 	ret[i] = 0;
 	return (ret);
+}
+
+int	word_cnt(char const *s, char c)
+{
+	int	i;
+	int	cnt;
+
+	i = 0;
+	cnt = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			i++;
+		else
+		{
+			cnt++;
+			while (s[i] && s[i] != c)
+			{
+				i++;
+			}
+		}
+	}
+	return (cnt);
 }
 
 char	**ft_split(char const *s, char c)
