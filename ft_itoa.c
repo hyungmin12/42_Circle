@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:36:36 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/08/08 17:31:28 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/08/13 17:22:28 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ char	*ft_itoa(int n)
 	int		sign;
 
 	ft_sign(&n, &sign);
-	i = len(n);
+	i = len(n);	
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	str = (char *)malloc(i + 1);
 	if (!(str))
 		return (NULL);
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
 	if (n < 0)
 		n = n * -1;
 	str[i] = '\0';

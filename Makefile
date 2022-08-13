@@ -6,7 +6,7 @@
 #    By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/18 14:56:48 by hyyoo             #+#    #+#              #
-#    Updated: 2022/07/18 17:41:59 by hyyoo            ###   ########.fr        #
+#    Updated: 2022/08/13 17:26:45 by hyyoo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ AR = ar
 SRC = ft_memset.c \
 	ft_bzero.c \
 	ft_memcpy.c \
-	ft_memccpy.c \
 	ft_memmove.c \
 	ft_memchr.c \
 	ft_memcmp.c \
