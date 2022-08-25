@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 17:02:44 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/08/08 17:40:22 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/08/21 17:30:11 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*make_word(char *word, char const *s, int k, int word_len)
 	return (word);
 }
 
-char	**split(char **ret, char const *s, char c, int num)
+char	**mkae_strstr(char **ret, char const *s, char c, int num)
 {
 	int		i;
 	int		k;
@@ -88,6 +88,6 @@ char	**ft_split(char const *s, char c)
 	ret = (char **)malloc(sizeof(char *) * (num + 1));
 	if (!ret)
 		return (NULL);
-	split(ret, s, c, num);
+	make_strstr(ret, s, c, num);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 14:30:23 by dapark            #+#    #+#             */
-/*   Updated: 2022/08/18 21:29:47 by dapark           ###   ########.fr       */
+/*   Updated: 2022/08/21 17:33:40 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ char    *ft_substr(char const *s, unsigned int start, size_t len);
 size_t  ft_strlen(const char *str);
 char    *ft_strjoin(char const *s1, char const *s2);
 char    *ft_strchr(const char *s, int c);
-size_t  ft_len(char const *src, unsigned int idx, size_t len);
+ size_t  ft_len(char const *src, unsigned int idx, size_t len);
 
 #endif
