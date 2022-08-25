@@ -6,16 +6,15 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:57:56 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/08/25 16:29:41 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/08/25 16:38:05 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr(int n)
+int	ft_putnbr(int n, int *i)
 {
 	char	c;
-	static	int	i;
 
 	if (n == -2147483648)
 	{
@@ -26,20 +25,20 @@ int	ft_putnbr(int n)
 	{
 		write(1, "-", 1);
 		n *= -1;
-		i++;
+		(*i)++;
 	}
 	if (n >= 10)
 	{
-		ft_putnbr(n / 10);
+		ft_putnbr(n / 10, i);
 		c = '0' + n % 10;
-		i++;
+		(*i)++;
 	}
 	else
 	{
 		c = '0' + n;
-		i++;
+		(*i)++;
 	}
 	write(1, &c, 1);
 
-	return (i);
+	return (*i);
 }

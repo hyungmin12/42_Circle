@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:19:15 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/08/25 16:30:05 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/08/25 16:35:30 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 static int	make_printf(char c, va_list ap)
 {
+	int tmp;
+
+	tmp = 0;
 	if (c == 'c')
 		return (ft_putchar((char)va_arg(ap, int)));//int로 표현되어 있음.. 이해 안감// 가변인자를 받아서 보냄.
 	if (c == 's')
 		return (ft_putstr(va_arg(ap, char *)));
 	if (c == 'd' || c == 'i')
-		return (ft_putnbr(va_arg(ap, int))); // int tmp = 0 을 선언해서 사용함. 왜?..
+		return (ft_putnbr(va_arg(ap, int), &tmp)); // int tmp = 0 을 선언해서 사용함. 왜?..
 	/*if (c == 'u')
 		return (ft_putunb(ap));
 	if (c == 'c')
