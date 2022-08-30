@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:19:15 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/08/30 15:18:53 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/08/30 15:38:04 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	make_printf(const char c, va_list ap)
 		ret += (ft_putnbr(va_arg(ap, int)));
 	else if (c == 'u')
 		ret += (ft_putnbr(va_arg(ap, unsigned int)));
-	else if (c == 'x' || c == 'X')
+	else if (c == 'x' || c == 'X' || c == 'p')
 		ret += (ft_puthex(va_arg(ap, unsigned int), c));
 	if (c == '%')
 	{
@@ -66,14 +66,26 @@ int	ft_printf(const char *str, ...)
 
 int main()
 {
-	int a = -2147483648;
-	int s = 1234;
+	char a[10] = "asdf";
+	char s = 'a';
+	int i = -2147483648;
+	int j = -1234;
 
-	int n = ft_printf("%d", a);
+	int n = ft_printf("%s %d", a, i);
 	printf("\n");
-	int m = ft_printf("%d", s);
+	int m = ft_printf("%c %d", s, j);
 	printf("\n");
 	ft_printf("n == %d", n);
 	printf("\n");
 	ft_printf("m == %d", m);
+
+	printf("\n");
+
+	int k = printf("%s %d", a, i);
+	printf("\n");
+	int l = printf("%c %d", s, j);
+	printf("\n");
+	printf("n == %d", k);
+	printf("\n");
+	printf("m == %d", l);
 }
