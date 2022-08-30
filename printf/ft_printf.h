@@ -7,7 +7,7 @@
 
 int	ft_putchar(char c);
 int	ft_putstr(char *str);
-static int	ft_strlen(char *str);
-int	ft_putnbr(int n, int *i);
+int	ft_putnbr(long n);
+int	ft_puthex(unsigned long num, char c);
 
 #endif

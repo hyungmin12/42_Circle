@@ -6,39 +6,29 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:57:56 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/08/25 16:38:05 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/08/30 15:17:09 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr(int n, int *i)
+int	ft_putnbr(long n)
 {
-	char	c;
+	int	i;
 
-	if (n == -2147483648)
+	i = 0;
+	if (n < 0)
 	{
-		write(1, "-2147483648", 11);
-		return (11);
+		i += ft_putchar('-');
+		i += ft_putnbr(-n);
 	}
-	else if (n < 0)
+	else if (n > 9)
 	{
-		write(1, "-", 1);
-		n *= -1;
-		(*i)++;
-	}
-	if (n >= 10)
-	{
-		ft_putnbr(n / 10, i);
-		c = '0' + n % 10;
-		(*i)++;
+		i += ft_putnbr(n / 10);
+		i += ft_putnbr(n % 10);
 	}
 	else
-	{
-		c = '0' + n;
-		(*i)++;
-	}
-	write(1, &c, 1);
+		i += ft_putchar(n + 48);
 
-	return (*i);
+	return (i);
 }
