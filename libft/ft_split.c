@@ -5,100 +5,94 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/26 16:07:24 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/08/26 16:07:29 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/08/03 17:02:44 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/08/08 17:40:22 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include "libft.h"
 
-/*static int	cnt_word(char const *s, char c)
-{
-	int i;
-	int word;
-
-	i = 0;
-	word = 0;
-	while (s && s[i])
-	{
-		if (s[i] != c)
-		{
-			word++;
-			while (s[i] != c && s[i])
-				i++;
-		}
-		else
-			i++;
-	}
-	return (word);
-}*/
-
-static int	len_word(char const *s, char c, int i)
-{
-	int	size;
-
-	size = 0;
-	while (s[i] != c && s[i])
-	{
-		size++;
-		i++;
-	}
-	return (size);
-}
-
-static int	cnt_word(char const *s, char c)
-{
-	int i;
-	int word;
-
-	i = 0;
-	word = 0;
-	while (s && s[i])
-	{
-		if (s[i] != c)
-		{
-			word++;
-			while (s[i] != c && s[i])
-				i++;
-		}
-		else
-			i++;
-	}
-	return (word);
-}
-
-static void	make_free(char **str, int idx)
-{
-	while (idx-- > 0)
-		free(str[idx]);
-	free(str);
-}
-
-char		**ft_split(char const *s, char c)
+char	*make_word(char *word, char const *s, int k, int word_len)
 {
 	int		i;
-	int		j;
-	int		word;
-	int		size;
-	char	**ret;
 
 	i = 0;
-	j = -1;
-	word = ft_count_word(s, c);
-	if (!(ret = (char **)malloc((word + 1) * sizeof(char *))))
-		return (NULL);
-	while (++j < word)
+	while (word_len > 0)
 	{
-		while (s[i] == c)
-			i++;
-		size = ft_size_word(s, c, i);
-		if (!(ret[j] = ft_substr(s, i, size)))
-		{
-			make_free(ret, j);
-			return (NULL);
-		}
-		i += size;
+		word[i++] = s[k - word_len--];
 	}
-	ret[j] = 0;
+	word[i] = '\0';
+	return (word);
+}
+
+char	**make_strstr(char **ret, char const *s, char c, int num)
+{
+	int		i;
+	int		k;
+	int		word_len;
+
+	i = 0;
+	k = 0;
+	word_len = 0;
+	while (s[k] && i < num)
+	{
+		while (s[k] && s[k] == c)
+			k++;
+		while (s[k] && s[k] != c)
+		{
+			k++;
+			word_len++;
+		}
+		ret[i] = (char *)malloc(sizeof(char) * (word_len + 1));
+		if (!ret)
+			return (NULL);
+		make_word(ret[i], s, k, word_len);
+		word_len = 0;
+		i++;
+	}
+	ret[i] = 0;
+	return (ret);
+}
+
+int	word_cnt(char const *s, char c)
+{
+	int	i;
+	int	cnt;
+
+	i = 0;
+	cnt = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			i++;
+		else
+		{
+			cnt++;
+			while (s[i] && s[i] != c)
+			{
+				i++;
+			}
+		}
+	}
+	return (cnt);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**ret;
+	int		num;
+
+	if (s == 0)
+		return (NULL);
+	num = word_cnt(s, c);
+	ret = (char **)malloc(sizeof(char *) * (num + 1));
+	if (!ret)
+		return (NULL);
+	make_strstr(ret, s, c, num);
+	while (num--)
+	{
+		if (ret[num] == 0)
+			free(ret);
+	}
 	return (ret);
 }
