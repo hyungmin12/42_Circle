@@ -5,47 +5,51 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 17:04:44 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/08/21 17:27:20 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/09/01 16:20:59 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/09/01 17:36:07 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// 1. 읽어들일 문자열. buf..
+// 2. 문자열을 저장. save_buf
+// 3. char *get_next_line(int fd) 함수 원형
+
 #include "get_next_line.h"
 
-static char	*find_next_line(int fd, char *buffer, char *save_buf)
+static char	*ft_read_buf(int fd, char *buf, char *save_buf) // buf 저장
 {
-	int	cnt;
 	char	*tmp_buf;
+	int		read_size;
 
-	cnt = 1;
-	while (cnt)
+	read_size = 1;
+	while (read_size)
 	{
-		cnt = read(fd, buffer, BUFFER_SIZE);
-		if (cnt == -1)
+		read_size = read(fd, buf, BUFFER_SIZE);
+		if (read_size == -1)
 			return (0);
-		else if (cnt == 0)
+		else if (read_size == 0)
 			break ;
-		buffer[cnt] = '\0';
+		buf[read_size] = '\0';
 		if (!save_buf)
 		{
 			save_buf = malloc(1);
 			save_buf[0] = '\0';
 		}
 		tmp_buf = save_buf;
-		save_buf = ft_strjoin(tmp_buf, buffer);
+		save_buf = ft_strjoin(tmp_buf, buf);
 		if (!save_buf)
 			return (NULL);
 		free(tmp_buf);
 		tmp_buf = NULL;
-		if (ft_strchr(buffer, '\n'))
+		if (ft_strchr(buf, '\n'))
 			break ;
 	}
 	return (save_buf);
 }
 
-static char	*ft_cut_the_line(char *str)
+static char	*ft_cut_line(char *str) // 개행구분
 {
-	int	i;
+	int		i;
 	char	*ret;
 
 	i = 0;
@@ -68,22 +72,23 @@ static char	*ft_cut_the_line(char *str)
 
 char	*get_next_line(int fd)
 {
-	char		*str;
-	char		*buffer;
-	static char	*save_buf;
+	char			*buf;
+	static char		*save_buf;
+	char			*only_line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
+	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1)); // buf할당
+	if (!buf)
 		return (NULL);
-	str = find_next_line(fd, buffer, save_buf);
-	free(buffer);
-	buffer = NULL;
-	if (!str)
+	only_line = ft_read_buf(fd, buf, save_buf);
+	free(buf);
+	buf = NULL;
+	if (!only_line)
 		return (NULL);
-	save_buf = ft_cut_the_line(str);
-	return (str);
+	save_buf = ft_cut_line(only_line);
+	
+	return (only_line);
 }
 
 #include <fcntl.h>

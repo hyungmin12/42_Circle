@@ -1,51 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl.c                                              :+:      :+:    :+:   */
+/*   my_gnl2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 17:04:44 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/08/21 17:27:20 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/09/01 17:46:26 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/09/01 18:43:47 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+// 1. gnl 함수에서 할것 == 
+// 2. 개행을 포함한 버퍼사이즈 만큼의 배열을 찾고, 저장한다.
+// 3. 저장한 배열을 받아서 개행을 기준으로 자른후 리턴한다.
 
 #include "get_next_line.h"
 
-static char	*find_next_line(int fd, char *buffer, char *save_buf)
+static void str_free(char *str)
 {
-	int	cnt;
+	free(str);
+	str = NULL; // 메모리는 해제 하더라도 그곳의 주소값은 여전하기에 NULL을 가르치게 한다.
+}
+
+/*static int	check_size(int read_size)
+{
+	if (read_size == -1)
+		return (0);
+	else
+		return (1);
+}*/
+
+static char	*ft_read_buf(int fd, char *buf, char *save_buf)
+{
+	int	read_size;
 	char	*tmp_buf;
 
-	cnt = 1;
-	while (cnt)
+	read_size = 1;
+	while (read_size)
 	{
-		cnt = read(fd, buffer, BUFFER_SIZE);
-		if (cnt == -1)
+		read_size = read(fd, buf, BUFFER_SIZE);
+		if (read_size == -1)
 			return (0);
-		else if (cnt == 0)
+		else if (read_size == 0)
 			break ;
-		buffer[cnt] = '\0';
+		buf[read_size] = '\0';
 		if (!save_buf)
-		{
-			save_buf = malloc(1);
-			save_buf[0] = '\0';
-		}
+			save_buf = ft_strdup("");
 		tmp_buf = save_buf;
-		save_buf = ft_strjoin(tmp_buf, buffer);
+		save_buf = ft_strjoin(tmp_buf, buf);
 		if (!save_buf)
 			return (NULL);
-		free(tmp_buf);
-		tmp_buf = NULL;
-		if (ft_strchr(buffer, '\n'))
+		str_free (tmp_buf);
+		if (ft_strchr(buf, '\n'))
 			break ;
 	}
 	return (save_buf);
 }
 
-static char	*ft_cut_the_line(char *str)
+static char	*ft_cut(char *str)
 {
-	int	i;
+	int		i;
 	char	*ret;
 
 	i = 0;
@@ -58,8 +71,7 @@ static char	*ft_cut_the_line(char *str)
 		return (NULL);
 	if (ret[0] == '\0')
 	{
-		free(ret);
-		ret = NULL;
+		str_free(ret);
 		return (NULL);
 	}
 	str[i + 1] = '\0';
@@ -68,22 +80,22 @@ static char	*ft_cut_the_line(char *str)
 
 char	*get_next_line(int fd)
 {
-	char		*str;
-	char		*buffer;
-	static char	*save_buf;
+	char			*buf;
+	static char		*save_buf;
+	char			*str;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
+	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1)); // buf할당
+	if (!buf)
 		return (NULL);
-	str = find_next_line(fd, buffer, save_buf);
-	free(buffer);
-	buffer = NULL;
+	str = ft_read_buf(fd, buf, save_buf);
+	str_free(buf);
 	if (!str)
 		return (NULL);
-	save_buf = ft_cut_the_line(str);
-	return (str);
+	save_buf = ft_cut(str);
+
+	return (str);	
 }
 
 #include <fcntl.h>
@@ -106,6 +118,6 @@ int main(void)
    line = get_next_line(fd);
    printf("%s", line);
    free(line);
-   system("leaks a.out");
+   //systeam("leaks a.out");
    return (0);
 }
