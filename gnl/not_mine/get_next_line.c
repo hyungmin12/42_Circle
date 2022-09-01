@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 14:26:03 by dapark            #+#    #+#             */
-/*   Updated: 2022/09/01 18:46:14 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/09/01 19:32:02 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,6 @@ int main(void)
   line = get_next_line(fd);
   printf("%s", line);
   free(line);
-  system("leaks a.out");
+  //system("leaks a.out");
   return (0);
 }

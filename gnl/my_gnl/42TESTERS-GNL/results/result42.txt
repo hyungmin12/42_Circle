@@ -1,0 +1,173 @@
+
+==========================================
+========== TEST 1 : The Alphabet =========
+==========================================
+
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+
+Not Good - Wrong Number Of Lines
+
+==========================================
+========= TEST 2 : Empty Lines ===========
+==========================================
+
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+
+Right number of lines
+
+==========================================
+======== TEST 3 : The Empty File =========
+==========================================
+
+|(null)
+
+Right number of lines
+
+==========================================
+========= TEST 4 : One New Line ==========
+==========================================
+
+|(null)
+|(null)
+
+Right number of lines
+
+==========================================
+========= TEST 5 : Four New Lines ========
+==========================================
+
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+
+Right number of lines
+
+==========================================
+============== TEST 6 : 42 ===============
+==========================================
+
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+|(null)
+
+Not Good - Wrong Number Of Lines
+
+==========================================
+============= TEST 7 : Marge =============
+==========================================
+
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+(null)
+
+Not Good - Wrong Number Of Lines
+
+==========================================
+========= TEST 8 : Wrong Input ===========
+==========================================
+
+Not Good, you don't return -1 if no FD
+

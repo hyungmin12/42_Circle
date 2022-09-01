@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl.c                                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:04:44 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/08/21 17:27:20 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/09/01 19:15:53 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*get_next_line(int fd)
 	save_buf = ft_cut_the_line(str);
 	return (str);
 }
-
+/*
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -108,4 +108,4 @@ int main(void)
    free(line);
    system("leaks a.out");
    return (0);
-}
+}*/
