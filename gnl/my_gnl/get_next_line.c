@@ -5,21 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 16:20:59 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/09/01 19:41:18 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/09/01 17:46:26 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/09/01 20:01:08 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// 1. 읽어들일 문자열. buf..
-// 2. 문자열을 저장. save_buf
-// 3. char *get_next_line(int fd) 함수 원형
+// 1. gnl 함수에서 할것 == 
+// 2. 개행을 포함한 버퍼사이즈 만큼의 배열을 찾고, 저장한다.
+// 3. 저장한 배열을 받아서 개행을 기준으로 자른후 리턴한다.
 
 #include "get_next_line.h"
 
-static char	*ft_read_buf(int fd, char *buf, char *save_buf) // buf 저장
+static void str_free(char *str)
 {
+	free(str);
+	str = NULL; // 메모리는 해제 하더라도 그곳의 주소값은 여전하기에 NULL을 가르치게 한다.
+}
+
+/*static int	check_size(int read_size)
+{
+	if (read_size == -1)
+		return (0);
+	else
+		return (1);
+}*/
+
+static char	*ft_read_buf(int fd, char *buf, char *save_buf)
+{
+	int	read_size;
 	char	*tmp_buf;
-	int		read_size;
 
 	read_size = 1;
 	while (read_size)
@@ -31,23 +44,19 @@ static char	*ft_read_buf(int fd, char *buf, char *save_buf) // buf 저장
 			break ;
 		buf[read_size] = '\0';
 		if (!save_buf)
-		{
-			save_buf = malloc(1);
-			save_buf[0] = '\0';
-		}
+			save_buf = ft_strdup("");
 		tmp_buf = save_buf;
 		save_buf = ft_strjoin(tmp_buf, buf);
 		if (!save_buf)
 			return (NULL);
-		free(tmp_buf);
-		tmp_buf = NULL;
+		str_free (tmp_buf);
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
 	return (save_buf);
 }
 
-static char	*ft_cut_line(char *str) // 개행구분
+static char	*ft_cut(char *str)
 {
 	int		i;
 	char	*ret;
@@ -62,8 +71,7 @@ static char	*ft_cut_line(char *str) // 개행구분
 		return (NULL);
 	if (ret[0] == '\0')
 	{
-		free(ret);
-		ret = NULL;
+		str_free(ret);
 		return (NULL);
 	}
 	str[i + 1] = '\0';
@@ -74,23 +82,22 @@ char	*get_next_line(int fd)
 {
 	char			*buf;
 	static char		*save_buf;
-	char			*only_line;
+	char			*str;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1)); // buf할당
 	if (!buf)
 		return (NULL);
-	only_line = ft_read_buf(fd, buf, save_buf);
-	free(buf);
-	buf = NULL;
-	if (!only_line)
+	str = ft_read_buf(fd, buf, save_buf);
+	str_free(buf);
+	if (!str)
 		return (NULL);
-	save_buf = ft_cut_line(only_line);
-	
-	return (only_line);
-}
+	save_buf = ft_cut(str);
 
+	return (str);	
+}
+/*
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -111,6 +118,6 @@ int main(void)
    line = get_next_line(fd);
    printf("%s", line);
    free(line);
-   system("leaks a.out > leaks_result_temp; cat leaks_result_temp | grep leaked && rm -rf leaks_result_temp");
+   //systeam("leaks a.out");
    return (0);
-}
+}*/
