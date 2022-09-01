@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:19:15 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/08/30 15:38:04 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/08/30 16:31:48 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,13 @@ int	ft_printf(const char *str, ...)
 
 int main()
 {
+	/*
 	char a[10] = "asdf";
 	char s = 'a';
 	int i = -2147483648;
 	int j = -1234;
 
-	int n = ft_printf("%s %d", a, i);
+	int n = ft_printf("%s %c", a, s);
 	printf("\n");
 	int m = ft_printf("%c %d", s, j);
 	printf("\n");
@@ -81,11 +82,36 @@ int main()
 
 	printf("\n");
 
-	int k = printf("%s %d", a, i);
+	int k = printf("%s %c", a, s);
 	printf("\n");
 	int l = printf("%c %d", s, j);
 	printf("\n");
 	printf("n == %d", k);
 	printf("\n");
-	printf("m == %d", l);
+	printf("m == %d", l);*/
+
+	ft_printf("%c", '\0');
+	printf("%c", '\0');
 }
+
+#include<stdio.h>
+/*
+int main(void)
+{
+    ft_printf("26----------------------\n");
+    printf("%d\n",    printf("   printf |%-8.6d|%-8.6d|\n", 1025, -1025));
+    printf("%d\n", ft_printf("ft_printf |%-8.6d|%-8.6d|\n", 1025, -1025));
+    ft_printf("26----------------------\n");
+    printf("%d\n",    printf("   printf |%-15.8d|\n", 15));
+    printf("%d\n", ft_printf("ft_printf |%-15.8d|\n", 15));
+    ft_printf("26----------------------\n");
+    printf("%d\n",    printf("|%-20.8d|\n", 15));
+    printf("%d\n", ft_printf("|%-20.8d|\n", 15));
+    ft_printf ("111-----------------------------------\n");
+    printf("%d\n",    printf("   printf |%0*d|%0*d|\n",  -3, 10012, -3, -10012));
+    printf("%d\n", ft_printf("ft_printf |%0*d|%0*d|\n",  -3, 10012, -3, -10012));
+    ft_printf ("119-----------------------------------\n");
+    printf("%d\n",    printf("   printf |%-*d|%-*d|\n",  5, 10012, 5, -10012));
+    printf("%d\n", ft_printf("ft_printf |%-*d|%-*d|\n",  5, 10012, 5, -10012));
+    return (0);
+}*/
