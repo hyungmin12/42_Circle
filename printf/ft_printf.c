@@ -6,27 +6,28 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:19:15 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/09/05 16:22:09 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/09/05 17:27:54 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-static int	make_printf(const char c, va_list ap)
+static int	make_printf(const char c, va_list (*ap))
 {
 	int ret;
 
 	ret = 0;
 	if (c == 'c')
-		ret += (ft_putchar((char)va_arg(ap, int)));//노션에 이유 정리// gcc 컴파일러라 그럼.
+		ret += (ft_putchar((char)va_arg((*ap), int)));//노션에 이유 정리// gcc 컴파일러라 그럼.
 	else if (c == 's')
-		ret += (ft_putstr(va_arg(ap, char *)));
+		ret += (ft_putstr(va_arg((*ap), char *)));
 	else if (c == 'd' || c == 'i')
-		ret += (ft_putnbr(va_arg(ap, int)));
+		ret += (ft_putnbr(va_arg((*ap), int)));
 	else if (c == 'u')
-		ret += (ft_putnbr(va_arg(ap, unsigned int)));
+		ret += (ft_putnbr(va_arg((*ap), unsigned int)));
 	else if (c == 'x' || c == 'X' || c == 'p')
-		ret += (ft_puthex(va_arg(ap, unsigned int), c));
+		ret += (ft_puthex(va_arg((*ap), unsigned int), c));
 	else if (c == '%')
 	{
 		write(1, "%%", 1);
@@ -34,7 +35,6 @@ static int	make_printf(const char c, va_list ap)
 	}
 	return (ret);
 }
-
 
 int	ft_printf(const char *str, ...)
 {
@@ -50,7 +50,7 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%' && str[i + 1] != '\0')
 		{	
 			i++;// %의 다음 즉 c,s,d 등을 표현
-			count = count + make_printf(str[i], ap); // 현재 i는 c,s 등 여기서 가변인자 선언한 가변인자 ap를 make_print로 보냄
+			count = count + make_printf(str[i], &ap); // 현재 i는 c,s 등 여기서 가변인자 선언한 가변인자 ap를 make_print로 보냄
 		}
 		else
 		{
@@ -61,9 +61,7 @@ int	ft_printf(const char *str, ...)
 	va_end(ap);
 	return (count);
 }
-
-#include<stdio.h>
-
+/*
 int main()
 {
 	
@@ -72,14 +70,14 @@ int main()
 	int i = -2147483648;
 	int j = -1234;
 
-	int n = ft_printf("%c %d", s, j);
+	int n = ft_printf("1 == %d, 2 == %s", i, "유형민");
 	printf("\n");
-	int m = ft_printf("%s %d", a, j);
+	int m = ft_printf("3 == %d, 4 == %s", i, "유형민");
 	printf("\n");
 	ft_printf("n == %d", n);
 	printf("\n");
-	ft_printf("m == %d", m);
-/*
+	printf("n == %d", m);
+
 	printf("\n");
 
 	int k = printf("%d %d", i, j);
@@ -91,27 +89,5 @@ int main()
 	printf("m == %d", l);
 
 	ft_printf("%c", '\0');
-	printf("%c", '\0');*/
-}
-/*
-#include<stdio.h>
-
-int main(void)
-{
-    ft_printf("26----------------------\n");
-    printf("%d\n",    printf("   printf |%-8.6d|%-8.6d|\n", 1025, -1025));
-    printf("%d\n", ft_printf("ft_printf |%-8.6d|%-8.6d|\n", 1025, -1025));
-    ft_printf("26----------------------\n");
-    printf("%d\n",    printf("   printf |%-15.8d|\n", 15));
-    printf("%d\n", ft_printf("ft_printf |%-15.8d|\n", 15));
-    ft_printf("26----------------------\n");
-    printf("%d\n",    printf("|%-20.8d|\n", 15));
-    printf("%d\n", ft_printf("|%-20.8d|\n", 15));
-    ft_printf ("111-----------------------------------\n");
-    printf("%d\n",    printf("   printf |%0*d|%0*d|\n",  -3, 10012, -3, -10012));
-    printf("%d\n", ft_printf("ft_printf |%0*d|%0*d|\n",  -3, 10012, -3, -10012));
-    ft_printf ("119-----------------------------------\n");
-    printf("%d\n",    printf("   printf |%-*d|%-*d|\n",  5, 10012, 5, -10012));
-    printf("%d\n", ft_printf("ft_printf |%-*d|%-*d|\n",  5, 10012, 5, -10012));
-    return (0);
+	printf("%c", '\0');
 }*/
