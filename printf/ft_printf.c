@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:19:15 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/08/30 16:31:48 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/09/05 16:22:09 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ static int	make_printf(const char c, va_list ap)
 
 	ret = 0;
 	if (c == 'c')
-		return (ft_putchar((char)va_arg(ap, int)));//int로 표현되어 있음.. 이해 안감// 가변인자를 받아서 보냄.
+		ret += (ft_putchar((char)va_arg(ap, int)));//노션에 이유 정리// gcc 컴파일러라 그럼.
 	else if (c == 's')
-		return (ft_putstr(va_arg(ap, char *)));
+		ret += (ft_putstr(va_arg(ap, char *)));
 	else if (c == 'd' || c == 'i')
 		ret += (ft_putnbr(va_arg(ap, int)));
 	else if (c == 'u')
 		ret += (ft_putnbr(va_arg(ap, unsigned int)));
 	else if (c == 'x' || c == 'X' || c == 'p')
 		ret += (ft_puthex(va_arg(ap, unsigned int), c));
-	if (c == '%')
+	else if (c == '%')
 	{
 		write(1, "%%", 1);
 		return (1);
@@ -48,8 +48,8 @@ int	ft_printf(const char *str, ...)
 	while(str[i])
 	{
 		if (str[i] == '%' && str[i + 1] != '\0')
-		{
-			i++; // %의 다음 즉 c,s,d 등을 표현
+		{	
+			i++;// %의 다음 즉 c,s,d 등을 표현
 			count = count + make_printf(str[i], ap); // 현재 i는 c,s 등 여기서 가변인자 선언한 가변인자 ap를 make_print로 보냄
 		}
 		else
@@ -66,36 +66,36 @@ int	ft_printf(const char *str, ...)
 
 int main()
 {
-	/*
+	
 	char a[10] = "asdf";
 	char s = 'a';
 	int i = -2147483648;
 	int j = -1234;
 
-	int n = ft_printf("%s %c", a, s);
+	int n = ft_printf("%c %d", s, j);
 	printf("\n");
-	int m = ft_printf("%c %d", s, j);
+	int m = ft_printf("%s %d", a, j);
 	printf("\n");
 	ft_printf("n == %d", n);
 	printf("\n");
 	ft_printf("m == %d", m);
-
+/*
 	printf("\n");
 
-	int k = printf("%s %c", a, s);
+	int k = printf("%d %d", i, j);
 	printf("\n");
-	int l = printf("%c %d", s, j);
+	int l = printf("%d %d", i, j);
 	printf("\n");
 	printf("n == %d", k);
 	printf("\n");
-	printf("m == %d", l);*/
+	printf("m == %d", l);
 
 	ft_printf("%c", '\0');
-	printf("%c", '\0');
+	printf("%c", '\0');*/
 }
-
-#include<stdio.h>
 /*
+#include<stdio.h>
+
 int main(void)
 {
     ft_printf("26----------------------\n");
