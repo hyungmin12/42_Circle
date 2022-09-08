@@ -37,9 +37,9 @@ int	ft_putx(unsigned long long p)
 	int	i;
 
 	i = 0;
-	i += write(1, "0x", 2);
+	i += ft_putstr("0x");
 	if (p == 0)
-		i += write(1, "0", 1);
+		i += ft_putchar('0');
 	else
 	{
 		ft_putnumx(p);
