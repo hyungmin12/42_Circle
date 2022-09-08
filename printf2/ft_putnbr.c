@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/25 15:23:03 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/09/08 16:57:40 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/08/25 15:57:56 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/08/30 15:17:09 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"ft_printf.h"
+#include "ft_printf.h"
 
-static int	ft_strlen(char *str)
+int	ft_putnbr(long n)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
-		i++;
+	if (n < 0)
+	{
+		i += ft_putchar('-');
+		i += ft_putnbr(-n);
+	}
+	else if (n > 9)
+	{
+		i += ft_putnbr(n / 10);
+		i += ft_putnbr(n % 10);
+	}
+	else
+		i += ft_putchar(n + 48);
+
 	return (i);
-}
-
-int	ft_putstr(char *str)
-{
-	int	i;
-	int	len;
-
-	if (str == NULL)
-		str = "(null)";
-	len = ft_strlen(str);
-	i = 0;
-	while (str[i])
-		write(1, &str[i++], 1);
-	return (len);
 }

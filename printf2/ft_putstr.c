@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:23:03 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/09/08 16:57:40 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/09/08 22:59:29 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_putstr(char *str)
 	int	i;
 	int	len;
 
-	if (str == NULL)
+	if (!str)
 		str = "(null)";
 	len = ft_strlen(str);
 	i = 0;
