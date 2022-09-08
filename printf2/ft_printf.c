@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:19:15 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/09/08 23:14:19 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/09/08 23:56:42 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static int	make_printf(const char c, va_list (*ap))
 		write(1, "%%", 1);
 		return (1);
 	}
+	
 	return (ret);
 }
 
@@ -55,9 +56,7 @@ int	ft_printf(const char *str, ...)
 			count = count + make_printf(str[i], &ap); // 현재 i는 c,s 등 여기서 가변인자 선언한 가변인자 ap를 make_print로 보냄
 		}
 		else
-		{
 			count = count + ft_putchar(str[i]);
-		}
 		i++;
 	}
 	va_end(ap);
