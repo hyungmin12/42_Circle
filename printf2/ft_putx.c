@@ -5,47 +5,45 @@ void	ft_putchar2(char c)
 	write(1, &c, 1);
 }
 
-int	ft_ptr_len(uintptr_t num)
+int	ft_len(uintptr_t n)
 {
-	int	len;
+	int	i;
 
-	len = 0;
-	while (num != 0)
+	i = 0;
+	while (n)
 	{
-		len++;
-		num = num / 16;
+		i++;
+		n /= 16;
 	}
-	return (len);
+	return (i);
 }
 
-void	ft_put_ptr(uintptr_t num)
+void	ft_putnumx(uintptr_t n)
 {
-	if (num >= 16)
+	char	*hex;
+
+	hex = "0123456789abcdef";
+	if (n > 15)
 	{
-		ft_put_ptr(num / 16);
-		ft_put_ptr(num % 16);
+		ft_putnumx(n / 16);
+		ft_putnumx(n % 16);
 	}
 	else
-	{
-		if (num <= 9)
-			ft_putchar2(num + '0');
-		else
-			ft_putchar2(num - 10 + 'a');
-	}
+		write(1, &hex[n], 1);
 }
 
-int	ft_print_ptr(unsigned long long ptr)
+int	ft_putx(unsigned long long p)
 {
-	int	print_length;
+	int	i;
 
-	print_length = 0;
-	print_length += write(1, "0x", 2);
-	if (ptr == 0)
-		print_length += write(1, "0", 1);
+	i = 0;
+	i += write(1, "0x", 2);
+	if (p == 0)
+		i += write(1, "0", 1);
 	else
 	{
-		ft_put_ptr(ptr);
-		print_length += ft_ptr_len(ptr);
+		ft_putnumx(p);
+		i += ft_len(p);
 	}
-	return (print_length);
+	return (i);
 }

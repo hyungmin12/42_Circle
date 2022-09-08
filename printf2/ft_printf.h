@@ -10,8 +10,8 @@ int	ft_putstr(char *str);
 int	ft_putnbr(long n);
 int	ft_puthex(unsigned long num, char c);
 void 	ft_putchar2(char c);
-int     ft_ptr_len(uintptr_t num);
-void    ft_put_ptr(uintptr_t num);
-int     ft_print_ptr(unsigned long long ptr);
+int     ft_len(uintptr_t n);
+void    ft_putnumx(uintptr_t n);
+int     ft_putx(unsigned long long p);
 
 #endif
