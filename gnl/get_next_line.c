@@ -5,47 +5,51 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 17:04:44 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/09/01 19:15:53 by hyyoo            ###   ########.fr       */
+/*   Created: 2022/09/01 17:46:26 by hyyoo             #+#    #+#             */
+/*   Updated: 2022/09/16 19:47:04 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*find_next_line(int fd, char *buffer, char *save_buf)
+static void	str_free(char *str)
 {
-	int	cnt;
+	free(str);
+	str = NULL;
+}
+
+static char	*ft_read_buf(int fd, char *buf, char *save_buf, int read_size)
+{
 	char	*tmp_buf;
 
-	cnt = 1;
-	while (cnt)
+	read_size = 1;
+	while (read_size)
 	{
-		cnt = read(fd, buffer, BUFFER_SIZE);
-		if (cnt == -1)
+		read_size = read(fd, buf, BUFFER_SIZE);
+		if (read_size == -1)
 			return (0);
-		else if (cnt == 0)
+		else if (read_size == 0)
 			break ;
-		buffer[cnt] = '\0';
+		buf[read_size] = '\0';
 		if (!save_buf)
 		{
 			save_buf = malloc(1);
 			save_buf[0] = '\0';
 		}
 		tmp_buf = save_buf;
-		save_buf = ft_strjoin(tmp_buf, buffer);
+		save_buf = ft_strjoin(tmp_buf, buf);
 		if (!save_buf)
 			return (NULL);
-		free(tmp_buf);
-		tmp_buf = NULL;
-		if (ft_strchr(buffer, '\n'))
+		str_free (tmp_buf);
+		if (ft_strchr(buf, '\n'))
 			break ;
 	}
 	return (save_buf);
 }
 
-static char	*ft_cut_the_line(char *str)
+static char	*ft_cut(char *str)
 {
-	int	i;
+	int		i;
 	char	*ret;
 
 	i = 0;
@@ -58,8 +62,7 @@ static char	*ft_cut_the_line(char *str)
 		return (NULL);
 	if (ret[0] == '\0')
 	{
-		free(ret);
-		ret = NULL;
+		str_free(ret);
 		return (NULL);
 	}
 	str[i + 1] = '\0';
@@ -68,21 +71,22 @@ static char	*ft_cut_the_line(char *str)
 
 char	*get_next_line(int fd)
 {
-	char		*str;
-	char		*buffer;
-	static char	*save_buf;
+	char			*buf;
+	static char		*save_buf;
+	char			*str;
+	int				i;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	i = 1;
+	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
+	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buf)
 		return (NULL);
-	str = find_next_line(fd, buffer, save_buf);
-	free(buffer);
-	buffer = NULL;
+	str = ft_read_buf(fd, buf, save_buf, i);
+	str_free(buf);
 	if (!str)
 		return (NULL);
-	save_buf = ft_cut_the_line(str);
+	save_buf = ft_cut(str);
 	return (str);
 }
 /*
@@ -91,21 +95,19 @@ char	*get_next_line(int fd)
 
 int main(void)
 {
-	int fd;
+  int fd;
 
-   fd = 0;
-   fd = open("./test", O_RDONLY);
-   char *line = get_next_line(fd);
-   printf("%p\n", line);
-   printf("%s", get_next_line(fd));
-   free(line);
-   line = get_next_line(fd);
-   printf("%s", line);
-   free(line);
-
-   line = get_next_line(fd);
-   printf("%s", line);
-   free(line);
-   system("leaks a.out");
-   return (0);
+  fd = 1;
+  fd = open("./test", O_RDONLY);
+  char *line = get_next_line(fd);
+  printf("%p\n", line);
+  printf("%s", get_next_line(fd));
+  free(line);
+  //line = get_next_line(fd);
+  //printf("%s", line);
+  //free(line);
+  //line = get_next_line(fd);
+  //printf("%s", line);
+  //free(line);
+  return (0);
 }*/
