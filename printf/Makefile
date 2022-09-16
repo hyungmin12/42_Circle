@@ -5,6 +5,7 @@ SRCS	= ft_printf.c\
 		  ft_puthex.c\
 		  ft_putnbr.c\
 		  ft_putstr.c\
+		  ft_putx.c\
 
 CC		= cc
 
