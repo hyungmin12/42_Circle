@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:19:15 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/09/16 19:53:04 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/09/17 01:35:56 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ static int	make_printf(const char c, va_list (*ap))
 	else if (c == 'x' || c == 'X')
 		ret += (ft_puthex(va_arg((*ap), unsigned int), c));
 	else if (c == '%')
-	{
-		write(1, "%%", 1);
-		return (1);
-	}
+		ret += (ft_putchar('%'));
 	return (ret);
 }
 
