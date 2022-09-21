@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:19:15 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/09/17 01:35:56 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/09/21 16:50:19 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	ft_start(int *i, int *count)
+{
+	*i = -1;
+	*count = 0;
+}
+
+int	ft_check_str(const char *str)
+{
+	if (!str)
+		return (-1);
+	return (0);
+}
+
+int	ft_check_len(int len)
+{
+	if (len == -1)
+		return (-1);
+	return (len);
+}
 
 static int	make_printf(const char c, va_list (*ap))
 {
@@ -31,28 +51,34 @@ static int	make_printf(const char c, va_list (*ap))
 		ret += (ft_puthex(va_arg((*ap), unsigned int), c));
 	else if (c == '%')
 		ret += (ft_putchar('%'));
+	else
+		ret = -1;
 	return (ret);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	va_list	ap;
-	int		i;
 	int		count;
+	int		len;
+	int		i;
 
+	ft_check_str(str);
 	va_start(ap, str);
-	i = 0;
-	count = 0;
-	while (str[i])
+	ft_start(&i, &count);
+	while (str[++i])
 	{
 		if (str[i] == '%' && str[i + 1] != '\0')
 		{	
-			i++;
-			count = count + make_printf(str[i], &ap);
+			len = make_printf(str[++i], &ap);
+			count = count + len;
 		}
 		else
-			count = count + ft_putchar(str[i]);
-		i++;
+		{
+			len = ft_putchar(str[i]);
+			count = count + len;
+		}
+		ft_check_len(len);
 	}
 	va_end(ap);
 	return (count);
