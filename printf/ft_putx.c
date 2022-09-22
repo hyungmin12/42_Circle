@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 23:57:53 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/09/21 16:49:59 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/09/22 17:49:12 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_putnumx(unsigned long long n)
 		ft_putnumx(n % 16);
 	}
 	else
-		write(1, &hex[n], 1);
+		ft_putchar(hex[n]);
 }
 
 int	ft_putx(unsigned long long p)
@@ -50,12 +50,20 @@ int	ft_putx(unsigned long long p)
 
 	i = 0;
 	i += ft_putstr("0x");
+	if (i == -1)
+		return (-1);
 	if (p == 0)
+	{
 		i += ft_putchar('0');
+		if (i == -1)
+			return (-1);
+	}
 	else
 	{
 		ft_putnumx(p);
 		i += ft_len(p);
+		if (i == -1)
+			return (-1);
 	}
 	return (i);
 }

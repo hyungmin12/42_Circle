@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 17:24:16 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/09/21 16:50:12 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/09/22 17:27:52 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ int	ft_puthex(unsigned long num, char c)
 		if (i == -1)
 			return (-1);
 	}
-		//write (1, &hex[num], 1);
 	return (i);
 }
