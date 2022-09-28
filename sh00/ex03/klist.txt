@@ -1,0 +1,5 @@
+Credentials cache: API:9C9675C6-CF53-4371-BD38-2B9DC2E54786
+        Principal: hyyoo@42SEOUL.KR
+
+  Issued                Expires               Principal
+May 16 15:55:45 2022  May 17 01:55:25 2022  krbtgt/42SEOUL.KR@42SEOUL.KR
