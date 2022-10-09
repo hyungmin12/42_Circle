@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 22:35:45 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/06/02 21:16:11 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/10/09 16:33:28 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,16 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	}
 	*ret = 0;
 	return (result);
+}
+
+#include<stdio.h>
+int	main(void)
+{
+	char	*tab[4];
+	tab[0] = "1";
+	tab[1] = "2";
+	tab[2] = "3";
+	tab[3] = "4";
+	printf("%s", ft_strjoin(4, tab, "Pasquale"));
+	return (0);
 }
