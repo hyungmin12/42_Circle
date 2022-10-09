@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:48:19 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/06/04 23:03:50 by hyyoo            ###   ########.fr       */
+/*   Updated: 2022/10/09 17:17:37 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,26 @@ char	*ft_strdup(char *src)
 {
 	int		i;
 	int		j;
-	char	*tab;
+	int	len;
+	char	*res;
 
 	i = 0;
 	j = 0;
-	tab = (char *)malloc(sizeof(char) * ft_strlen(src) + 1);
-	if (!tab)
+	len = ft_strlen(src);
+	res = (char *)malloc(sizeof(char) * len + 1);
+	if (!res)
 		return (0);
 	while (src[i])
 	{
-		tab[i] = src[j];
+		res[i] = src[j];
 		i++;
 		j++;
 	}
-	tab[i] = '\0';
-	return (tab);
+	res[i] = '\0';
+	return (res);
+}
+#include<stdio.h>
+int main()
+{
+	printf("%s", ft_strdup("asdf"));
 }
