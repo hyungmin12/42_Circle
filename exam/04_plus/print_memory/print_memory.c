@@ -35,6 +35,8 @@ void	ft_print_char(unsigned char c)
 
 void	print_memory(const void *addr, size_t size)
 {
+	size_t i;
+	size_t j;
 
 	unsigned char *ptr;
 
