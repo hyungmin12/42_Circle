@@ -1,15 +1,21 @@
+CC = gcc
+CFLAG = -Wall -Werror -Wextra
+ 
 TARGET = do-op
-SRC = op.c util.c main.c
-
-all: $(TARGET)
-
-$(TARGET):
-	gcc -Wall -Werror -Wextra -o $(TARGET) $(SRC)
-
-fclean:
+ 
+SOURCE = ft_do.c main.c ft_check.c
+INCLUDE = ft.h
+OBJS = $(SOURCE:.c=.o)
+ 
+all : $(TARGET)
+ 
+$(TARGET) : $(OBJS)
+	$(CC) $(CFLAG) -o $(TARGET) $(SOURCE)
+ 
+clean :
+	rm -f $(OBJS)
+ 
+fclean : clean
 	rm -f $(TARGET)
-
-clean:
-	rm -f *.o
-
-re: fclean all
+ 
+re : fclean all
