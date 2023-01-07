@@ -3,10 +3,14 @@ LIBFT		= libft
 LIBFT_LIB	= libft.a
 
 SRCS		= so_long.c \
-			  map.c \
-			  utils.c \
-			  get_next_line.c \
-			  get_next_line_utils.c \
+			  src/gnl/get_next_line.c \
+			  src/gnl/get_next_line_utils.c \
+			  src/error_msg/error_msg.c \
+			  src/pasing/pasing.c \
+			  src/render_img/img.c \
+			  src/key/key.c \
+ 			#   utils.c \
+ 			#   map.c \
 			#   image.c \
 			#   key.c \
 
@@ -16,16 +20,18 @@ OBJS		= $(SRCS:%.c=%.o)
 
 LIBC		= ar rc
 
-FLAGS		= -Wall -Wextra -Werror
+FLAGS		= -Wall -Wextra -Werror 
+
+SANITIZE 	= -g3 -fsanitize=address
 
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJS)
 		make all -C $(LIBFT)/
-		gcc -o $(NAME) $(OBJS) -Llibft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit
+		gcc -o $(NAME) $(OBJS) ${SANITIZE} -Llibft -lft -L./mlx -lmlx -framework OpenGL -framework AppKit
 
 %.o			:	%.c
-		gcc $(FLAGS) -c $^ -I./ -o $@
+		gcc $(FLAGS) ${SANITIZE} -c $^ -I./ -o $@
 
 
 clean		:
