@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:31:34 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/18 15:07:13 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/01/18 15:59:58 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	check_requ(t_game *game)
 	while (game->str_line[i])
 	{
 		if (game->num_col != (int)ft_strlen(game->str_line[i++]))
-			get_free_and_exit("map is not requ", game);
+			get_free_and_exit("wall is not requ", game);
 	}
 }
 
