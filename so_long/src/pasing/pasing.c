@@ -12,7 +12,7 @@
 
 #include "../../so_long.h"
 
-void	check_map_extention(char *map_name)
+int	check_map_extention(char *map_name)
 {
 	char	*ext;
 	int	len;
@@ -20,20 +20,18 @@ void	check_map_extention(char *map_name)
 	len = ft_strlen(map_name) - 3;
 	ext = map_name + len;
 	if (ft_strncmp(ext, "ber", 3) != 0)
-	{
-		ft_error_msg("map extention is not .ber");
-		exit(1);
-	}
+		return (ft_error_msg("map extention is not .ber"));
+	return (SUCCESS);
 }
 
-void	get_num_row(char *map, t_game *game)
+int	get_num_row(char *map, t_game *game)
 {
 	int	fd;
 	char	*line;
 
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
-		ft_error_msg("file can't open");
+		return (ft_error_msg("file can't open"));
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -43,10 +41,12 @@ void	get_num_row(char *map, t_game *game)
 	}
 	close(fd);
 	if (game->num_row < 3)
-		ft_error_msg("map is empty");
+		return (ft_error_msg("map is empty"));
+	return (SUCCESS);
+
 }
 
-void	str_init(char *map, t_game *game)
+int	str_init(char *map, t_game *game)
 {
 	int	fd;
 	int	i;
@@ -56,10 +56,10 @@ void	str_init(char *map, t_game *game)
 	get_num_row(map, game);
 	game->str_line = (char **)malloc(sizeof(char *) * (game->num_row + 1));
 	if (!(game->str_line))
-		return ;
+		return (ERROR);
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
-		ft_error_msg("file can't open");
+		return (ft_error_msg("file can't open"));
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -69,9 +69,10 @@ void	str_init(char *map, t_game *game)
 	}
 	game->str_line[i] = NULL;
 	close(fd);
+	return (SUCCESS);
 }
 
-void	check_param(t_game *game)
+int	check_param(t_game *game)
 {
 	int	i;
 	int	j;
@@ -85,14 +86,15 @@ void	check_param(t_game *game)
 		{
 			c = game->str_line[i][j];
 			if (!(c == 'P' || c == '0' || c == '1' || c == 'C' || c == 'E' ))
-				get_free_and_exit("param error", game);
+				return (ft_error_msg("param error"));
 			j++;
 		}
 		i++;
 	}
+	return (SUCCESS);
 }
 
-void	check_param_cnt(t_game *game)
+int	check_param_cnt(t_game *game)
 {
 	int	i;
 	int	j;
@@ -116,10 +118,11 @@ void	check_param_cnt(t_game *game)
 		}
 	}
 	if (!(game->player == 1 && game->exit == 1 && game->collec >= 1))
-		get_free_and_exit("param cnt error", game);
+		return (ft_error_msg("param cnt error"));
+	return (SUCCESS);
 }
 
-void	check_requ(t_game *game)
+int	check_requ(t_game *game)
 {
 	int	i;
 
@@ -128,11 +131,12 @@ void	check_requ(t_game *game)
 	while (game->str_line[i])
 	{
 		if (game->num_col != (int)ft_strlen(game->str_line[i++]))
-			get_free_and_exit("map is not requ", game);
+			return (ft_error_msg("map is not requ"));
 	}
+	return (SUCCESS);
 }
 
-void	check_wall(t_game *game)
+int	check_wall(t_game *game)
 {
 	int	i;
 	int	j;
@@ -147,20 +151,25 @@ void	check_wall(t_game *game)
 				|| (j == 0 || j == game->num_col - 1))
 			{
 				if (game->str_line[i][j] != '1')
-					get_free_and_exit("wall error", game);
+					return (ft_error_msg("wall error"));
 			}
 			j++;
 		}
 		i++;
 	}
+	return (SUCCESS);
 }
 
 void	parsing(char *map, t_game *game)
 {
-	check_map_extention(map);
-	str_init(map, game);
-	check_param(game);
-	check_param_cnt(game);
-	check_requ(game);
-	check_wall(game);
+	int result;
+
+	result = check_map_extention(map) + str_init(map, game)
+		+ check_param(game) + check_param_cnt(game)
+			+ check_requ(game) + check_wall(game);
+	if (result)
+	{
+		free_table(game->str_line);
+		exit(1);
+	}
 }

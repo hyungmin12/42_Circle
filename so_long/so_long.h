@@ -23,7 +23,8 @@
 
 # define PIXEL                  63
 # define X_EVENT_KEY_PRESS		2
-
+# define ERROR					1
+# define SUCCESS				0
 # define X_EVENT_KEY_EXIT		17
 # define KEY_ESC		        53
 # define KEY_W			        13
@@ -57,20 +58,17 @@ typedef struct s_game
 
 }		t_game;
 
-void	ft_error_msg(char *error_msg);
+int		ft_error_msg(char *error_msg);
 void	parsing(char *map, t_game *game);
-void	str_init(char *map, t_game *game);
-void	get_free_and_exit(char *error_msg, t_game *game);
-void	check_param_cnt(t_game *game);
-void	check_requ(t_game *game);
-void	check_wall(t_game *game);
+int		get_free_and_exit(char *error_msg, t_game *game);
 void	put_img(t_game *g, int i, int j);
 int	set_img(t_game *game);
-void	move_key_W(t_game *game);
-void	move_key_S(t_game *game);
-void	move_key_A(t_game *game);
-void	move_key_D(t_game *game);
+void	move_key_w(t_game *game);
+void	move_key_s(t_game *game);
+void	move_key_a(t_game *game);
+void	move_key_d(t_game *game);
 void	print_map(char **line);
 t_img	img_init(void *mlx);
+void	free_table(char **table);
 
 #endif

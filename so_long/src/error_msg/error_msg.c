@@ -12,25 +12,28 @@
 
 #include "../../so_long.h"
 
-void	ft_error_msg(char *error_msg)
+int	ft_error_msg(char *error_msg)
 {
 	write(2, "Error\n", 6);
 	write(2, error_msg, ft_strlen(error_msg));
 	write(2, "\n", 1);
-	exit(1);
+	return (ERROR);
 }
 
 void	free_table(char **table)
 {
 	int	i;
 
-	i = 0;
-	while (table[i])
-		free(table[i++]);
-	free(table);
+	if(table)
+	{
+		i = 0;
+		while (table[i])
+			free(table[i++]);
+		free(table);
+	}
 }
 
-void	get_free_and_exit(char *error_msg, t_game *game)
+int	get_free_and_exit(char *error_msg, t_game *game)
 {
 	if (error_msg)
 	{
@@ -40,7 +43,8 @@ void	get_free_and_exit(char *error_msg, t_game *game)
 	}
 	free_table(game->str_line);
 	if (error_msg)
-		exit(1);
+		return (ERROR);
 	else
 		exit(0);
+	return (SUCCESS);
 }
