@@ -6,26 +6,11 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 14:02:38 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/18 21:50:09 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/01/18 21:56:04 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
 
 char	*error(char *str)
 {
@@ -64,7 +49,7 @@ int	main(int ac, char **av)
 	if (ac == 1)
 	{
 		pid = getpid();
-		ft_putnbr_fd(pid);
+		ft_putnbr(pid);
 		while (1)
 		{
 			signal(SIGUSR1, print_msg);
