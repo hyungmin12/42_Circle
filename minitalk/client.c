@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 13:15:12 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/12/29 13:36:08 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/01/18 21:35:49 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,5 @@ int	main(int ac, char **av)
 		send_msg(av[2], ft_atoi(av[1]));
 	}
 	else
-		ft_printf("no");
+		write(1, "no", 2);
 }
