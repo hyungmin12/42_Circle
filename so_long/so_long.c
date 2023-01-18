@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 11:32:06 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/07 12:15:44 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/01/18 15:00:54 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int	main(int ac, char **av)
 		struct_init(&game);
 		parsing(av[1], &game);
 		game.mlx = mlx_init();
-		game.win = mlx_new_window(game.mlx, game.num_col * PIXEL, game.num_row * PIXEL, "so_long");
+		game.win = mlx_new_window
+			(game.mlx, game.num_col * PIXEL, game.num_row * PIXEL, "so_long");
 		game.img = img_init(game.mlx);
 		printf("move cnt = %d\n", game.player_move_cnt);
 		mlx_hook(game.win, X_EVENT_KEY_PRESS, 0, &key_press, &game);
