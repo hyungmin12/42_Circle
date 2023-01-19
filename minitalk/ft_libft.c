@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 21:49:51 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/18 21:58:01 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/01/19 17:34:08 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,47 @@ int	ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+int	ft_atoi(const char *str)
+{
+	int						sign;
+	int						i;
+	unsigned long int		ret;
+
+	i = 0;
+	sign = 1;
+	ret = 0;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\v' || str[i] == '\f'
+		|| str[i] == '\r' || str[i] == '\t')
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i++] == '-')
+			sign = sign * -1;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		ret = ret * 10 + str[i] - '0';
+		i++;
+		if (ret > 2147483647 && sign == 1)
+			return (-1);
+		if (ret > 2147483648 && sign == -1)
+			return (0);
+	}
+	return (ret * sign);
+}
+
+int	is_number(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (0);
+		i++;
+	}
+	return (1);
 }

@@ -2,7 +2,7 @@
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 SRCS_CLIENT = ft_libft.c client.c
 

@@ -6,14 +6,13 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 13:16:09 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/18 21:56:42 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/01/19 17:32:31 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
 
-# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <signal.h>
@@ -27,6 +26,6 @@ void	ft_putnbr(int n);
 void	send_bit(char origin_char, int pid);
 void	send_msg(char *str, int pid);
 void	print_msg(int sig);
-char	*error(char *str);
+char	*ft_error_msg(char *str);
 
 #endif

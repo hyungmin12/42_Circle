@@ -6,23 +6,19 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 14:02:38 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/18 21:56:04 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/01/19 18:58:13 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-char	*error(char *str)
+char	*ft_error_msg(char *str)
 {
 	write(2, "Error : ", ft_strlen("Error : "));
 	write(2, str, ft_strlen(str));
 	write(2, "\n", ft_strlen("\n"));
 	exit(1);
 }
-
-/*
-* 에러없음 : getpid 범위지정 필요 없음.
-*/
 
 void	print_msg(int sig)
 {
@@ -48,15 +44,19 @@ int	main(int ac, char **av)
 	(void) av;
 	if (ac == 1)
 	{
+		write(1, "Server PID : ", 13);
 		pid = getpid();
 		ft_putnbr(pid);
+		write(1, "\nsend msg is : ", ft_strlen("\nsend_msg is : "));
 		while (1)
 		{
-			signal(SIGUSR1, print_msg);
-			signal(SIGUSR2, print_msg);
+			if (signal(SIGUSR1, print_msg) == SIG_ERR)
+				ft_error_msg("can't handle SIGINT!\n");
+			if (signal(SIGUSR2, print_msg) == SIG_ERR)
+				ft_error_msg("can't handle SIGINT!\n");
 			pause();
 		}
 	}
 	else
-		error("ac more than 1");
+		ft_error_msg("ac errer");
 }
