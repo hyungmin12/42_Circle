@@ -3,13 +3,15 @@ LIBFT		= libft
 LIBFT_LIB	= libft.a
 
 SRCS		=	push_swap.c \
-				./srcs/parcing.c	\
+				./srcs/parsing.c \
+				./srcs/arr.c \
+				./srcs/utils.c \
 			
 OBJS		= $(SRCS:%.c=%.o)
 
 LIBC		= ar rc
 
-FLAGS		= -Wall -Wextra -Werror 
+FLAGS		= -Wall -Wextra -Werror
 
 all			:	$(NAME)
 

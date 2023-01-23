@@ -6,7 +6,7 @@
 /*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:23:14 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/12 14:10:20 by yuhyeongmin      ###   ########.fr       */
+/*   Updated: 2023/01/23 15:40:47 by yuhyeongmin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,36 +17,32 @@
 
 #include "push_swap.h"
 
-int ft_error_msg(char *msg)
-{
-    write(2, "Error\n", 6);
-    write(2, msg, ft_strlen(msg));
-    exit(1);
-}
+// t_info	*ft_info_new(void)
+// {
+// 	t_numbers	*stack_a;
+// 	t_info		*new_mem;
 
- 
+// 	new_mem = NULL;
+// 	new_mem = (t_info *)malloc(sizeof(t_info));
+// 	stack_a = ft_stack_new();
+// 	new_mem->array = NULL;
+// 	new_mem->size_a = 0;
+// 	new_mem->top_a = stack_a;
+// 	new_mem->bottom_a = stack_a;
+// 	new_mem->size_b = 0;
+// 	return (new_mem);
+// }
+
 int main(int ac, char **av)
 {
-    // int *num_array;
-    // int num_array_size;
-
-    // num_array = (int *)malloc(sizeof(int) * ac - 1);
-    // num_array_size = ac - 1;
+    int arr_size;
+    int *nums;
+    // t_info *info;
     
-    // if (ac < 3)
-    // {
-    //     ft_error_msg("ac error");
-    // }
-    // // int i = 0;
-    // num_array = ft_atoi_and_rt(av, num_array, num_array_size);
-    // // while (i < 100)
-    // // {
-    // //     printf("%d", num_array[i++]);
-    // // }
-    int i = 1;
-    while (i < ac) {
-        // printf("%s\n", av[i++]);
-        
+    nums = NULL;
+    if (ac < 2)
+    {
+        ft_error_msg("ac error");
     }
-    return 0;
+    parsing(ac, av, &arr_size, nums);
 }
