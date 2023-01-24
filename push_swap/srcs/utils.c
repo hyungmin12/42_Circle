@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 20:24:21 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/22 22:14:10 by yuhyeongmin      ###   ########.fr       */
+/*   Updated: 2023/01/23 23:13:29 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,13 @@ void check_is_digit(const char *str)
             ft_error_msg("av is not int");
         i++;
     }
+}
+
+void ft_putstr(char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+        write(1, &str[i++], 1);
 }

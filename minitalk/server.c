@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 14:02:38 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/19 18:58:13 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/01/22 23:30:55 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ int	main(int ac, char **av)
 		pid = getpid();
 		ft_putnbr(pid);
 		write(1, "\nsend msg is : ", ft_strlen("\nsend_msg is : "));
-		while (1)
-		{
 			if (signal(SIGUSR1, print_msg) == SIG_ERR)
 				ft_error_msg("can't handle SIGINT!\n");
 			if (signal(SIGUSR2, print_msg) == SIG_ERR)
 				ft_error_msg("can't handle SIGINT!\n");
+		while (1)
+		{
 			pause();
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   introduction_sspa.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youjeon <youjeon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 13:52:31 by youjeon           #+#    #+#             */
-/*   Updated: 2022/01/15 14:13:42 by youjeon          ###   ########.fr       */
+/*   Updated: 2023/01/23 22:55:56 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,14 @@ void	pa(t_info *info)
 	if (info->size_a == 0)
 	{
 		tmp->next = NULL;
-		info->top_a = tmp;
-		info->bottom_a = tmp;
+		tmp->prev = NULL;
+		info->top_a->content = tmp->content;
+		info->bottom_a->content = tmp->content;
 	}
 	else
 	{
 		tmp->next = info->top_a;
-		info->top_a->prev = tmp;
+		info->top_a->prev  = tmp;
 		info->top_a = tmp;
 	}
 	info->size_a += 1;

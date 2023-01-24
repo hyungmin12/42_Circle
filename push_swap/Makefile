@@ -6,6 +6,14 @@ SRCS		=	push_swap.c \
 				./srcs/parsing.c \
 				./srcs/arr.c \
 				./srcs/utils.c \
+				./srcs/ft_ss_pa_pb.c \
+				./srcs/ft_rr.c \
+				./srcs/ft_rrr.c \
+				./srcs/ft_sort.c \
+				# sort_rotate.c \
+				# sort_rotate_util.c \
+				# sort_util.c \
+
 			
 OBJS		= $(SRCS:%.c=%.o)
 

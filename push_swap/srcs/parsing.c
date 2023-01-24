@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:28:52 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/22 23:24:15 by yuhyeongmin      ###   ########.fr       */
+/*   Updated: 2023/01/23 16:49:11 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void    check_is_overlap(int *nums, int size)
     }
 } 
 
-void parsing(int ac, char **av, int *arr_size, int *nums)
+int *parsing(int ac, char **av, int *arr_size, int *nums)
 {
     int size;
     (void)ac;
@@ -93,9 +93,7 @@ void parsing(int ac, char **av, int *arr_size, int *nums)
     nums = get_num_array(av, size);
     check_is_sorted(nums, size);
     check_is_overlap(nums, size);
-    int i = 0;
-    while (i < 7)
-    {
-        printf("%d",nums[i++]);
-    }
+
+    return nums;
+    // printf("%d\n", nums[0]);
 }

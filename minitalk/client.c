@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 13:15:12 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/19 18:57:47 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/01/19 20:06:44 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	send_bit(char origin_char, int pid)
 {
 	int		bit_push;
 	char	shifted_char;
+	int		kill_cnt;
 
+	kill_cnt = 0;
 	bit_push = 8;
 	while (bit_push--)
 	{
@@ -37,8 +39,10 @@ void	send_bit(char origin_char, int pid)
 				exit(1);
 			}
 		}
+		kill_cnt++;
 		usleep(100);
 	}
+	ft_putnbr(kill_cnt);
 }
 
 void	send_msg(char *str, int pid)
