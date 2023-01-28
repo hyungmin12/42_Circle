@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:23:14 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/24 20:25:14 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/01/27 23:08:50 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ t_info    *ft_init_info()
     rt->top_b = stack_b;
     rt->bottom_a = stack_a;
     rt->bottom_b = stack_b;
-    rt->p1 = 0;
-    rt->p2 = 0;
     return (rt);
 }
 
@@ -73,9 +71,53 @@ void	ft_change_array_to_stack(t_info *info, int *array, int size)
     free(info->bottom_a);
 }
 
-void ft_sort_every_nums(t_info *info)
+int *ft_bubble_sort(int *nums, int size)
 {
-        ft_make_pibot(info);
+    int i;
+    int j;
+    int temp;
+
+    i = 0;
+    j = 0;
+    temp = 0;
+    
+    while (i < size - 1)
+    {
+        while (j < size - 1 - i)
+        {
+            if (nums[j] > nums[j + 1])
+            {
+                temp = nums[j];
+                nums[j] = nums[j + 1];
+                nums[j + 1] = temp;
+            }
+            j++;
+        }
+        j = 0;
+        i++;
+    }
+
+    return (nums);
+}
+void    ft_nums_array_change_to_stack(t_info *info)
+{
+    t_num *tmp;
+    // t_num *tmp2;
+    int i;
+
+    i = 0;
+    tmp = info->top_a;
+    while(i < info->size_a)
+    {
+        tmp->content = info->array[i];
+        tmp = tmp->next;
+        i++;
+    }
+    // tmp2 = info->bottom_a;
+    // info->bottom_a = info->bottom_a->prev;
+    // info->top_a->prev = tmp2;
+    // tmp2->next = info->top_a;
+    // info->top_a = info->top_a->prev;
 }
 
 void ft_sort(t_info *info)
@@ -87,47 +129,55 @@ void ft_sort(t_info *info)
 	}
     if (info->size_a == 3)
         ft_sort_size_three(info);
-    // if (info->size_a > 3)
+    else if (info->size_a == 4)
+        ft_sort_size_four(info);
+    else if (info->size_a == 5)
+        ft_sort_size_five(info);
     else
         ft_sort_every_nums(info);
 }
 
-//
-// void	ft_sort_big(t_info *info)
-// {
-// 	int	a;
-// 	int	b;
+void ft_int_cpy(t_info *info, int *nums, int size)
+{
+    int i;
 
-// 	ft_sort_three_division(info);
-// 	while (info->size_a > 3)
-// 		ft_pb(info);
-// 	if (info->size_a == 2)
-// 	{
-// 		if (info->top_a->content > info->top_a->next->content)
-// 			ft_sa(info);
-// 	}
-// 	if (info->size_a == 3)
-// 		ft_sort_more_than_three(info);
-// 	while (info->size_b)
-// 	{
-// 		a = 0;
-// 		b = 0;
-// 		get_min_rotate(info, &a, &b);
-// 		ft_rotate_same(info, &a, &b);
-// 		ft_rotate_a(info, a);
-// 		ft_rotate_b(info, b);
-// 		ft_pa(info);
-// 	}
-// 	ft_sort_big_last(info);
-// }
-//
+    i = 0;
+    info->array = (int *)malloc(sizeof(int) * size);
+    while (i < size)
+    {
+        info->array[i] = nums[i];
+        // printf("%d\n", nums[i]);
+        i++;
+    }
+}
+
+void	ft_change_array_to_zero(int *nums, t_info* info)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while (i < info->size_a)
+    {
+        j = 0;
+        while (j < info->size_a)
+        {
+            if (info->array[i] == nums[j])
+                info->array[i] = j + 1;
+            j++;   
+        }
+        i++;
+        j += i;
+    }
+}
+
 int main(int ac, char **av)
 {
     int arr_size;
     int *nums;
     t_info *info;
     
-    // info = NULL;
     nums = NULL;
     if (ac < 2)
     {
@@ -135,13 +185,27 @@ int main(int ac, char **av)
     }
     nums = parsing(ac, av, &arr_size, nums);
     info = ft_init_info();
+    ft_int_cpy(info, nums, arr_size);
+    nums = ft_bubble_sort(nums, arr_size);
     ft_change_array_to_stack(info, nums, arr_size);
-    info->array = nums;
+    ft_change_array_to_zero(nums, info);
+    ft_nums_array_change_to_stack(info);
     ft_sort(info);
+
     
-    // printf("t a %d, t b %d,\n", info->top_a->content, info->top_b->content);
-    // printf("top_a == %d, top_a->next == %d, top_a->prev == \n", info->top_a->content, info->top_a->next->content);
-    // printf("bottom_a == %d ,bottom_a->next == %d, bottom_a->prev == %d\n ",info->bottom_a->content, info->bottom_a->next->content, info->bottom_a->prev->content);
-    // printf("bottom_a->next->next->content == %d\n", info->bottom_a->next->next->content);
+    // printf("%d\n", info->top_a->content);
+    // printf("%d\n", info->top_a->next->content);
+    // printf("%d\n", info->top_a->next->next->content);
+    // printf("%d\n", info->top_a->next->next->next->content);
+    // printf("%d\n", info->bottom_a->content);
+
+    
+    // printf("%d\n",info->top_a->content);
+    // printf("%d\n",info->top_a->next->content);
+    // printf("%d\n",info->top_a->next->next->content);
+    // printf("%d\n",info->top_a->next->next->next->content);
+
+           
+    
     return 0;
 }

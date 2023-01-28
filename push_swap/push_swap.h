@@ -19,8 +19,6 @@ typedef struct s_info
 	struct s_num	*top_a;
 	struct s_num	*bottom_a;
 	int				size_b;
-	int				p1;
-	int				p2;
 	struct s_num	*top_b;
 	struct s_num	*bottom_b;
 }			t_info;
@@ -41,11 +39,12 @@ void ft_error_msg(char *msg);
 void check_is_digit(const char *str);
 void check_is_sorted(int *nums, int size);
 void    check_is_overlap(int *nums, int size);
-
+int *ft_bubble_sort(int *nums, int size);
+int	ft_strcmp(char s1, char s2);
 void ft_sa(t_info *info);
 void ft_sb(t_info *info);
 void ft_ss(t_info *info);
-void ft_pa(t_info *info);
+void	ft_pa(t_info *info);
 void	ft_pb(t_info *info);
 void    ft_ra(t_info *info);
 void    ft_rb(t_info *info);
@@ -55,26 +54,15 @@ void ft_rrb(t_info *info);
 void	ft_rrr(t_info *info);
 void 	ft_sort_size_three(t_info *info);
 void	ft_sort_every_nums(t_info *info);
-void    ft_make_pibot(t_info *info);
-
-// int	get_stack_min(t_num *stack);
-// int	set_a_location_min(t_info *info);
-// int	get_stack_max(t_num *stack);
-// int	set_a_location_max(t_info *info);
-// int	set_a_location_mid(int num, t_info *info);
-// int	set_a_location(int num, t_info *info);
-// void	ft_rotate_same(t_info *info, int *a, int *b);
-// void	ft_rotate_a(t_info *info, int a);
-// void	ft_rotate_b(t_info *info, int b);
-// void	ft_sort_big_last(t_info *info);
-// void	ft_sort_3div_insruct(t_info *info, int pivot1, int pivot2);
-// void	ft_sort_three_division(t_info *info);
-// int	ft_get_bigger(int a, int b, int a_loc, int b_loc);
-// void	get_min_rotate(t_info *info, int *a, int *b);
-// void	ft_sort_big(t_info *info);
-
-
-
+void    ft_make_index_start_to_zero(t_info *info);
+void ft_int_cpy(t_info *info, int *nums, int size);
+void	ft_change_array_to_zero(int *nums, t_info* info);
+void	ft_sort_size_four(t_info *info);
+void	ft_sort_size_five(t_info *info);
+int		get_index(t_info *info, int data, int a_or_b);
+void	if_case_two(t_info *info, int a_b, int sort);
+void	ft_sort_more_than_five(t_info *info);
+void    max_top(t_info *info);
 
 
 #endif

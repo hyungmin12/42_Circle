@@ -10,10 +10,7 @@ SRCS		=	push_swap.c \
 				./srcs/ft_rr.c \
 				./srcs/ft_rrr.c \
 				./srcs/ft_sort.c \
-				# sort_rotate.c \
-				# sort_rotate_util.c \
-				# sort_util.c \
-
+				./srcs/ft_sort2.c \
 			
 OBJS		= $(SRCS:%.c=%.o)
 

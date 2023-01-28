@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:05:35 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/24 19:34:13 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/01/27 21:48:44 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void    ft_ra(t_info *info)
     if (info->size_a <= 1)
         return ;
     info->top_a = info->top_a->next;
-    // info->top_a->prev = NULL;
+    info->top_a->prev = NULL;
     info->bottom_a->next = tmp;
     tmp->prev = info->bottom_a;
     info->bottom_a->next = tmp;
     info->bottom_a = info->bottom_a->next;
-    // info->bottom_a->next = NULL;
+    info->bottom_a->next = NULL;
     ft_putstr("ra\n");
     
     // printf("%d , %d %d\n", info->top_a->content,info->top_a->next->content,info->bottom_a->content );
