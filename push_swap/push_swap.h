@@ -59,7 +59,7 @@ void ft_int_cpy(t_info *info, int *nums, int size);
 void	ft_change_array_to_zero(int *nums, t_info* info);
 void	ft_sort_size_four(t_info *info);
 void	ft_sort_size_five(t_info *info);
-int		get_index(t_info *info, int data, int a_or_b);
+int	get_index(t_info *info, int data);
 void	if_case_two(t_info *info, int a_b, int sort);
 void	ft_sort_more_than_five(t_info *info);
 void    max_top(t_info *info);

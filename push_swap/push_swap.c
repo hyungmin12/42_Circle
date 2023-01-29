@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:23:14 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/27 23:08:50 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/01/29 22:24:30 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int *ft_bubble_sort(int *nums, int size)
 void    ft_nums_array_change_to_stack(t_info *info)
 {
     t_num *tmp;
-    // t_num *tmp2;
+
     int i;
 
     i = 0;
@@ -113,11 +113,6 @@ void    ft_nums_array_change_to_stack(t_info *info)
         tmp = tmp->next;
         i++;
     }
-    // tmp2 = info->bottom_a;
-    // info->bottom_a = info->bottom_a->prev;
-    // info->top_a->prev = tmp2;
-    // tmp2->next = info->top_a;
-    // info->top_a = info->top_a->prev;
 }
 
 void ft_sort(t_info *info)
@@ -146,7 +141,6 @@ void ft_int_cpy(t_info *info, int *nums, int size)
     while (i < size)
     {
         info->array[i] = nums[i];
-        // printf("%d\n", nums[i]);
         i++;
     }
 }
@@ -191,21 +185,6 @@ int main(int ac, char **av)
     ft_change_array_to_zero(nums, info);
     ft_nums_array_change_to_stack(info);
     ft_sort(info);
-
-    
-    // printf("%d\n", info->top_a->content);
-    // printf("%d\n", info->top_a->next->content);
-    // printf("%d\n", info->top_a->next->next->content);
-    // printf("%d\n", info->top_a->next->next->next->content);
-    // printf("%d\n", info->bottom_a->content);
-
-    
-    // printf("%d\n",info->top_a->content);
-    // printf("%d\n",info->top_a->next->content);
-    // printf("%d\n",info->top_a->next->next->content);
-    // printf("%d\n",info->top_a->next->next->next->content);
-
            
-    
     return 0;
 }
