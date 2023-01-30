@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:28:52 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/27 21:41:49 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/01/30 20:49:13 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void check_is_int(char **av)
             if ((av[i][j] >= '0' && av[i][j] <= '9') || av[i][j] == ' ' || av[i][j] == '-')
                 j++;
             else
-                ft_error_msg("is not int2");
+                ft_error_msg("Error here\n");
         }
         i++;
     }

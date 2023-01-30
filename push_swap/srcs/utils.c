@@ -6,11 +6,34 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 20:24:21 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/23 23:13:29 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/01/30 22:04:23 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+void stack_a(t_info *info)
+{
+	t_num *tmp;
+
+	tmp = info->top_a;
+	while (tmp)
+	{
+		printf("stack_a == %d\n", tmp->content);
+		tmp = tmp->next;
+	}
+}
+
+void stack_b(t_info *info)
+{
+	t_num *tmp;
+
+	tmp = info->top_b;
+	while (tmp)
+	{
+		printf("stack_b == %d\n", tmp->content);
+		tmp = tmp->next;
+	}
+}
 
 void ft_error_msg(char *msg)
 {

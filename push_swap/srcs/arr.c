@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arr.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 20:06:50 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/22 22:13:49 by yuhyeongmin      ###   ########.fr       */
+/*   Updated: 2023/01/30 20:12:51 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,6 @@ int get_split_size(char **split_str)
         i++;
     return i;
 }
-// int get_array_size(char **av)
-// {
-//     int size;
-//     int i;
-//     int j;
-//     char **split_str;
-
-//     size = 0;
-//     i = 0;
-//     j = 0;
-//     while (av[i])
-//     {
-//         j = 0;
-//         while(av[i][j])
-//         {
-//             if (ft_is_space(av[i][j]))
-//                 break ;
-//             j++;
-//         }
-//         split_str = ft_split(av[i], ' ');
-//         size += get_split_size(split_str);
-//         free_str(split_str);
-//         i++;
-//     }
-//     return size - 1;
-// }
 
 int ft_str_space(char *str)
 {

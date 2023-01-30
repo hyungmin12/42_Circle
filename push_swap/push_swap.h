@@ -55,14 +55,17 @@ void	ft_rrr(t_info *info);
 void 	ft_sort_size_three(t_info *info);
 void	ft_sort_every_nums(t_info *info);
 void    ft_make_index_start_to_zero(t_info *info);
-void ft_int_cpy(t_info *info, int *nums, int size);
-void	ft_change_array_to_zero(int *nums, t_info* info);
+void 	t_int_cpy(t_info *info, int *nums, int size);
+void	ft_change_array_to_zero(int *nums, t_info* info, int arr_size);
 void	ft_sort_size_four(t_info *info);
 void	ft_sort_size_five(t_info *info);
 int	get_index(t_info *info, int data);
+// int	get_index(t_info *info, int data, int a_or_b);
 void	if_case_two(t_info *info, int a_b, int sort);
 void	ft_sort_more_than_five(t_info *info);
 void    max_top(t_info *info);
+void    ft_init_info_b(t_info *info);
+t_num	*ft_init_stack_b(int data);
 
 
 #endif
