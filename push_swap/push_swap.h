@@ -28,7 +28,7 @@ t_info  *ft_init_info();
 t_num   *ft_init_stack();
 void ft_sort(t_info *info);
 void	ft_change_array_to_stack(t_info *info, int *array, int size);
-int *parsing(int ac, char **av, int *arr_size, int *nums);
+int *parsing(char **av, int *arr_size, int *nums);
 int get_array_size(char **av);
 int *get_num_array(char **av, int size);
 int get_split_size(char **split_str);

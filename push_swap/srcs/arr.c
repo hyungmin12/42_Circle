@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 20:06:50 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/30 20:12:51 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/05 20:00:48 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int *get_num_array(char **av, int size)
     j = 0;
     ac_size = 0;
     nums = (int *)malloc(sizeof(int) * size);
-
+    if (!nums)
+        return (NULL);
     while (av[i])
     {
         j = 0;

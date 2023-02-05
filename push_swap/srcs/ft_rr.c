@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:05:35 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/05 18:11:39 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/05 20:38:03 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void    ft_list_add_back(t_info *info, t_num *stack, int a_or_b, int data)
     }
     tmp->next = new;
     new->content = data;
+    // free(tmp);
+    // free(new);
     if (a_or_b == 1)
         info->size_b++;
     else
@@ -49,7 +51,6 @@ void    ft_list_add_front_a(t_info *info, int data)
         info->head_a->next = info->top_a;
         info->top_a->next = NULL;
         info->top_a->content = data;
-        // stack_a(info);
     }
     else
     {
@@ -74,7 +75,6 @@ void    ft_list_add_front_b(t_info *info, int data)
         info->head_b->next = info->top_b;
         info->top_b->next = NULL;
         info->top_b->content = data;
-        // stack_a(info);
     }
     else
     {
@@ -110,7 +110,7 @@ void ft_remove_front_b(t_info *info)
     info->head_b->next = tmp;
     info->top_b = tmp;
     tmp = NULL;
-    // free(tmp);
+
     info->size_b--;
 }
 
