@@ -7,7 +7,6 @@
 
 typedef struct s_num
 {
-	struct s_num	*prev;
 	int				content;
 	struct s_num	*next;
 }			t_num;
@@ -16,11 +15,13 @@ typedef struct s_info
 {
 	int				*array;
 	int				size_a;
+	struct s_num	*head_a;
+	struct s_num	*head_b;
 	struct s_num	*top_a;
-	struct s_num	*bottom_a;
 	int				size_b;
 	struct s_num	*top_b;
-	struct s_num	*bottom_b;
+	int				bottom_a_content;
+	int				bottom_b_content;
 }			t_info;
 
 t_info  *ft_init_info();
@@ -46,11 +47,11 @@ void ft_sb(t_info *info);
 void ft_ss(t_info *info);
 void	ft_pa(t_info *info);
 void	ft_pb(t_info *info);
-void    ft_ra(t_info *info);
-void    ft_rb(t_info *info);
+void    ft_ra(t_info *info, char *msg);
+void    ft_rb(t_info *info, char *msg);
 void    ft_rr(t_info *info);
-void ft_rra(t_info *info);
-void ft_rrb(t_info *info);
+void ft_rra(t_info *info, char *msg);
+void ft_rrb(t_info *info, char *msg);
 void	ft_rrr(t_info *info);
 void 	ft_sort_size_three(t_info *info);
 void	ft_sort_every_nums(t_info *info);
@@ -65,7 +66,11 @@ void	if_case_two(t_info *info, int a_b, int sort);
 void	ft_sort_more_than_five(t_info *info);
 void    max_top(t_info *info);
 void    ft_init_info_b(t_info *info);
-t_num	*ft_init_stack_b(int data);
-
+// t_num	*ft_init_stack_b(int data);
+void stack_b(t_info *info);
+void stack_a(t_info *info);
+void    ft_list_add_front_a(t_info *info, int data);
+void    ft_list_add_front_b(t_info *info, int data);
+void    ft_test(t_info *info);
 
 #endif

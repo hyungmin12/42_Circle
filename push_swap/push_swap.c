@@ -6,26 +6,22 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:23:14 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/30 23:54:50 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/05 18:33:53 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// 1. 인자 중복 검사
-// 2. 정수인지
-// 3. 정수 범위인지
-// 3. 띄어쓰기 포함인지
+//이제 ra rra pa pb 만들면 됨~
 
 #include "push_swap.h"
 
-t_num   *ft_init_stack()
+t_num   *ft_init_stack() // 단방향
 {
 	t_num	*rt;
 
 	rt = NULL;
 	rt = (t_num *)malloc(sizeof(t_num));
-	rt->prev = NULL;
-	rt->content = 0;
 	rt->next = NULL;
+	rt->content = 0;
 	return (rt);
 }
 
@@ -41,59 +37,32 @@ t_info    *ft_init_info()
     rt->size_a = 0;
     stack_a = ft_init_stack();
     rt->top_a = stack_a;
-    rt->bottom_a = stack_a;
+    rt->bottom_a_content = 0;
+	rt->bottom_b_content = 0;
+    rt->head_a = NULL;
+    rt->head_b = NULL;
+
     return (rt);
 }
-t_num   *ft_init_stack_b(int data)
-{
-    t_num	*rt;
 
-	rt = NULL;
-	rt = (t_num *)malloc(sizeof(t_num));
-	rt->prev = NULL;
-	rt->content = data;
-	rt->next = NULL;
-	return (rt);
-}
-
-void    ft_init_info_b(t_info *info)
-{
-    t_num *stack_b;
-
-    stack_b = NULL;
-    info->top_b = stack_b;
-    stack_b = ft_init_stack();
-    info->size_b = 0;
-    info->top_b = stack_b;
-    info->bottom_b = stack_b;
-}
-
-void	ft_change_array_to_stack(t_info *info, int *array, int size)
+void	ft_change_array_to_stack(t_info *info, int *array, int size) // 단방향
 {
     // 첫 시작을 바텀이 가르키고 있다가 뉴 노드를 연결하면 서 뒤로 밀림. 탑과 바텀 모두 stack_a의 구조체를 가지고 있으니
     // 바텀이 맨 뒤쪽을 가르키고 있고 자연스레 탑은 밀리기 전을 가르키고 있어서 탑을 지키고 있음.
     t_num   *new_node;
-    int i;
 
-    i = 0;
-    while (i < size)
+    // new_node = ft_init_stack();
+        info->head_a = ft_init_stack();
+    while (0 < size)
     {
         info->size_a++;
         new_node = ft_init_stack();
-        info->bottom_a->content = array[i++];
-        info->bottom_a->next = new_node;
-        new_node->prev = info->bottom_a;
-        info->bottom_a = new_node;
+        new_node->content = array[size - 1];
+        new_node->next = info->head_a->next;
+        info->head_a->next = new_node;
+        info->top_a = new_node;
+        size--;
     }
-	info->bottom_a = info->bottom_a->prev;
-    //  t_num *tmp = info->top_a;
-    // while (size)
-    // {
-    //     printf("stack_a == %d\n", tmp->content);
-    //     tmp = tmp->next;
-	// 	size--;
-    // }
-    free(info->bottom_a);
 }
 
 void    ft_nums_array_change_to_stack(t_info *info, int arr_size)
@@ -203,7 +172,15 @@ void quick_sort(int *arr, int start, int end)
 }
 void stack_b(t_info *info);
 void stack_a(t_info *info);
+void	ft_lstdel_front_a(t_info *info);
+void	ft_lstadd_front_a(t_info *info, int data);
 
+void ft_int_printf(int *array, int size)
+{
+    int i = 0;
+    while (size--)
+        printf("array == %d\n", array[i++]);
+}
 int main(int ac, char **av)
 {
     int arr_size;
@@ -216,34 +193,23 @@ int main(int ac, char **av)
         ft_error_msg("Error\n");
     }
     nums = parsing(ac, av, &arr_size, nums);
-
     info = ft_init_info();
     ft_int_cpy(info, nums, arr_size);
     quick_sort(nums, 0, arr_size - 1);
-    
-    ft_change_array_to_stack(info, nums, arr_size);
-    
     ft_change_array_to_zero(nums, info, arr_size);
-    // int i = 0;
-    // while (i < ac - 1)
-    //     printf("%d\n", info->array[i++]);
+    ft_change_array_to_stack(info, info->array, arr_size);
     
-    ft_nums_array_change_to_stack(info, arr_size);
-    // ft_sort(info);
+    // ft_test(info);
+    ft_sort(info);
+    // system("leaks push_swap");
+    // stack_a(info);
+    // stack_b(info);
+    // printf("%d\n", info->top_a->content);
+    // printf("%d\n", info->top_a->next->content);
 
-
-    ft_pb(info);
-    ft_pb(info);
-    // ft_pb(info);
-    // ft_pb(info);
-    // ft_pb(info);
-
-    stack_a(info);
-    printf("-----------\n");
-    // printf("%d\n", info->bottom_a->prev->content);
-    stack_b(info);
-    printf("%d %d\n", info->size_a, info->size_b);
-    system("leaks push_swap");
+    
+    // printf("-----------\n");
+    // printf("size_a == %d size_b == %d\n", info->size_a, info->size_b);
     
     return 0;
 }

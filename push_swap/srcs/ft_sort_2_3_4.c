@@ -6,11 +6,23 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:43:37 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/30 20:45:14 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/05 15:49:27 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	get_bottom_a(t_info *info)
+{
+	t_num *tmp;
+
+	tmp = info->top_a;
+	while (tmp != NULL)
+	{
+        info->bottom_a_content = tmp->content;
+		tmp = tmp->next;
+	}
+}
 
 void ft_sort_size_three(t_info *info)
 {
@@ -18,29 +30,30 @@ void ft_sort_size_three(t_info *info)
     int m;
     int b;
 
+	get_bottom_a(info);
     t = info->top_a->content;
     m = info->top_a->next->content;
-    b = info->bottom_a->content;
+    b = info->bottom_a_content;
     
     if (t < m && t < b && m > b && m > t && b > t && b < m)
     {
         ft_sa(info);
-        ft_ra(info);
+        ft_ra(info, "ra\n");
     }
     if (t > m && t < b && m < t && m < b && b > t && b > m)
         ft_sa(info);
     if (t < m && t > b && m > t && m > b && b < m && b < t)
     {
-        ft_rra(info);
+        ft_rra(info, "rra\n");
     }
     if (t > m && t > b && m < t && m < b && b > m && b < t)
     {
-        ft_ra(info);
+        ft_ra(info, "ra\n");
     }
     if (t > m && t > b && m < t && m > b && b < t && b < m)
     {
         ft_sa(info);
-        ft_rra(info);
+        ft_rra(info, "rra\n");
     }
 }
 
@@ -68,10 +81,10 @@ void	ft_sort_size_four(t_info *info)
 	index = get_index(info, 0);
 	if (index < (info->size_a / 2))
 		while (info->top_a->content != 0)
-			ft_ra(info);
+			ft_ra(info, "ra\n");
 	else
 		while (info->top_a->content != 0)
-			ft_rra(info);
+			ft_rra(info, "rra\n");
 	ft_pb(info);
 	ft_sort_size_three(info);
     ft_pa(info);
@@ -110,7 +123,7 @@ void	ft_sort_size_five(t_info *info)
 		else if (info->top_a->content == 1)
 			ft_pb(info);
         else
-			ft_ra(info);
+			ft_ra(info, "ra\n");
 	}
 	ft_sb(info);
 	if_case_two(info, 1, 0);

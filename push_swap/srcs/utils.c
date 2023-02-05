@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 20:24:21 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/01/30 22:04:23 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/05 15:18:00 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ void stack_a(t_info *info)
 	t_num *tmp;
 
 	tmp = info->top_a;
-	while (tmp)
+    int i = 0;
+	while (tmp != NULL)
 	{
-		printf("stack_a == %d\n", tmp->content);
+		printf("stack_a[%d] == %d\n",i , tmp->content);
 		tmp = tmp->next;
+        i++;
 	}
+
 }
 
 void stack_b(t_info *info)
@@ -79,6 +82,8 @@ void ft_putstr(char *str)
     int i;
 
     i = 0;
+    if (!str)
+        return ;
     while (str[i])
         write(1, &str[i++], 1);
 }

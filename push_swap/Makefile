@@ -10,15 +10,13 @@ SRCS		=	push_swap.c \
 				./srcs/ft_rr.c \
 				./srcs/ft_rrr.c \
 				./srcs/ft_sort_2_3_4.c \
-				./srcs/ft_test.c \
-				# ./srcs/ft_sort.c \
-				# ./srcs/ft_sort2.c \
+				./srcs/ft_sort.c \
 			
 OBJS		= $(SRCS:%.c=%.o)
 
 LIBC		= ar rc
 
-FLAGS		= -Wall -Wextra -Werror -g
+FLAGS		= -Wall -Wextra -Werror
 
 all			:	$(NAME)
 
