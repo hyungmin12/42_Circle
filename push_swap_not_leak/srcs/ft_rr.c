@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:05:35 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/05 21:23:53 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/05 18:11:39 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void    ft_list_add_back(t_info *info, t_num *stack, int a_or_b, int data)
     }
     tmp->next = new;
     new->content = data;
-    // free(tmp);
-    // free(new);
     if (a_or_b == 1)
         info->size_b++;
     else
@@ -51,6 +49,7 @@ void    ft_list_add_front_a(t_info *info, int data)
         info->head_a->next = info->top_a;
         info->top_a->next = NULL;
         info->top_a->content = data;
+        // stack_a(info);
     }
     else
     {
@@ -75,6 +74,7 @@ void    ft_list_add_front_b(t_info *info, int data)
         info->head_b->next = info->top_b;
         info->top_b->next = NULL;
         info->top_b->content = data;
+        // stack_a(info);
     }
     else
     {
@@ -94,9 +94,8 @@ void ft_remove_front_a(t_info *info)
         return ;
     tmp = info->top_a->next;
     info->head_a->next = tmp;
-    free(info->top_a);
     info->top_a = tmp;
-    // tmp = NULL;
+    tmp = NULL;
     // free(tmp);
     info->size_a--;
 }
@@ -109,10 +108,9 @@ void ft_remove_front_b(t_info *info)
         return ;
     tmp = info->top_b->next;
     info->head_b->next = tmp;
-    free(info->top_b);
     info->top_b = tmp;
-    // tmp = NULL;
-
+    tmp = NULL;
+    // free(tmp);
     info->size_b--;
 }
 
@@ -286,3 +284,11 @@ void    ft_rrr(t_info *info)
     ft_rrb(info, NULL);
     ft_putstr("rrr\n");
 }
+
+// void    ft_test(t_info *info)
+// {
+//     ft_pb(info);
+//     ft_pb(info);
+//     ft_pb(info);
+//     ft_rrr(info);
+// }

@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:23:14 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/05 21:24:42 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/05 19:43:32 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ t_num   *ft_init_stack() // 단방향
 
 	rt = NULL;
 	rt = (t_num *)malloc(sizeof(t_num));
-    if (!rt)
-        return (NULL);
 	rt->next = NULL;
 	rt->content = 0;
 	return (rt);
@@ -35,8 +33,6 @@ t_info    *ft_init_info()
 
     stack_a = NULL;
     rt = (t_info *)malloc(sizeof(t_info));
-    if (!rt)
-        return (NULL);
     rt->array = NULL;
     rt->size_a = 0;
     stack_a = ft_init_stack();
@@ -51,9 +47,12 @@ t_info    *ft_init_info()
 
 void	ft_change_array_to_stack(t_info *info, int *array, int size) // 단방향
 {
+    // 첫 시작을 바텀이 가르키고 있다가 뉴 노드를 연결하면 서 뒤로 밀림. 탑과 바텀 모두 stack_a의 구조체를 가지고 있으니
+    // 바텀이 맨 뒤쪽을 가르키고 있고 자연스레 탑은 밀리기 전을 가르키고 있어서 탑을 지키고 있음.
     t_num   *new_node;
 
-    info->head_a = ft_init_stack();
+    // new_node = ft_init_stack();
+        info->head_a = ft_init_stack();
     while (0 < size)
     {
         info->size_a++;
@@ -62,7 +61,6 @@ void	ft_change_array_to_stack(t_info *info, int *array, int size) // 단방향
         new_node->next = info->head_a->next;
         info->head_a->next = new_node;
         info->top_a = new_node;
-        // free(new_node);
         size--;
     }
 }
@@ -102,23 +100,12 @@ void ft_sort(t_info *info)
         ft_sort_every_nums(info);
 }
 
-t_info *ft_make_info_array(t_info *info, int size)
-{
-    info->array = (int *)malloc(sizeof(int) * size);
-    if (!info->array)
-        return (NULL);
-    return (info);
-}
-
 void ft_int_cpy(t_info *info, int *nums, int size)
 {
     int i;
 
     i = 0;
-    info = ft_make_info_array(info, size);
-    // info->array = ft_make(info, size);
-    // if (!info->array)
-    //     return (NULL);
+    info->array = (int *)malloc(sizeof(int) * size);
     while (i < size)
     {
         info->array[i] = nums[i];
@@ -183,21 +170,17 @@ void quick_sort(int *arr, int start, int end)
     quick_sort(arr, start, j-1); //피봇 중심으로 왼쪽부분 분할
     quick_sort(arr, j+1, end); //피봇 중심으로 오른쪽부분 분할
 }
+void stack_b(t_info *info);
+void stack_a(t_info *info);
+void	ft_lstdel_front_a(t_info *info);
+void	ft_lstadd_front_a(t_info *info, int data);
 
-void free_stack(t_info *info)
+void ft_int_printf(int *array, int size)
 {
-    t_num *tmp;
-
-    tmp = info->head_a;
-    while (tmp)
-    {
-        tmp = tmp->next;
-        free(tmp);
-        info->head_a = tmp;
-    }
-    free(info->head_b);
+    int i = 0;
+    while (size--)
+        printf("array == %d\n", array[i++]);
 }
-
 int main(int ac, char **av)
 {
     int arr_size;
@@ -209,17 +192,13 @@ int main(int ac, char **av)
     {
         ft_error_msg("Error\n");
     }
-    nums = parsing(av, &arr_size, nums);
+    nums = parsing(ac, av, &arr_size, nums);
     info = ft_init_info();
     ft_int_cpy(info, nums, arr_size);
     quick_sort(nums, 0, arr_size - 1);
     ft_change_array_to_zero(nums, info, arr_size);
-    free(nums);
     ft_change_array_to_stack(info, info->array, arr_size);
-    free(info->array);
     ft_sort(info);
-    free_stack(info);
-    free(info);
-    system("leaks push_swap");
+    
     return 0;
 }
