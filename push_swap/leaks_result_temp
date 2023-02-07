@@ -1,0 +1,29 @@
+Process:         push_swap [24563]
+Path:            /Volumes/VOLUME/*/push_swap
+Load Address:    0x1087c1000
+Identifier:      push_swap
+Version:         ???
+Code Type:       X86-64
+Parent Process:  zsh [11718]
+
+Date/Time:       2023-02-07 16:25:37.421 +0900
+Launch Time:     2023-02-07 16:25:36.544 +0900
+OS Version:      Mac OS X 10.15.7 (19H15)
+Report Version:  7
+Analysis Tool:   /Applications/Xcode.app/Contents/Developer/usr/bin/leaks
+Analysis Tool Version:  Xcode 12.3 (12C33)
+
+Physical footprint:         356K
+Physical footprint (peak):  356K
+----
+
+leaks Report Version: 4.0
+Process 24563: 160 nodes malloced for 8 KB
+Process 24563: 4 leaks for 64 total leaked bytes.
+
+    4 (64 bytes) << TOTAL >>
+      1 (16 bytes) ROOT LEAK: 0x7ff2d7405830 [16]
+      1 (16 bytes) ROOT LEAK: 0x7ff2d7405840 [16]
+      1 (16 bytes) ROOT LEAK: 0x7ff2d7405890 [16]
+      1 (16 bytes) ROOT LEAK: 0x7ff2d74058b0 [16]
+

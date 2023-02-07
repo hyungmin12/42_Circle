@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:23:14 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/05 21:24:42 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/07 16:46:39 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,12 +197,12 @@ void free_stack(t_info *info)
     }
     free(info->head_b);
 }
-
 int main(int ac, char **av)
 {
     int arr_size;
     int *nums;
     t_info *info;
+    system("leaks --list -- push_swap");
     
     nums = NULL;
     if (ac < 2)
@@ -214,12 +214,11 @@ int main(int ac, char **av)
     ft_int_cpy(info, nums, arr_size);
     quick_sort(nums, 0, arr_size - 1);
     ft_change_array_to_zero(nums, info, arr_size);
-    free(nums);
     ft_change_array_to_stack(info, info->array, arr_size);
+    free(nums);
     free(info->array);
-    ft_sort(info);
+    // ft_sort(info);
     free_stack(info);
     free(info);
-    system("leaks push_swap");
     return 0;
 }

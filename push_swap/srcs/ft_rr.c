@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:05:35 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/05 21:23:53 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/07 16:12:34 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,30 +88,46 @@ void    ft_list_add_front_b(t_info *info, int data)
 
 void ft_remove_front_a(t_info *info)
 {
-    t_num *tmp;
+    // t_num *tmp;
     
-    if (info->size_a == 0)
+    // if (info->size_a == 0)
+    //     return ;
+    // tmp = info->top_a->next;
+    // info->head_a->next = tmp;
+    // free(info->top_a);
+    // info->top_a = tmp;
+    // // tmp = NULL;
+    // // free(tmp);
+    // info->size_a--;
+
+    if (info->size_b == 0)
         return ;
-    tmp = info->top_a->next;
-    info->head_a->next = tmp;
+    info->head_a->next = info->top_a->next;
     free(info->top_a);
-    info->top_a = tmp;
-    // tmp = NULL;
-    // free(tmp);
+    info->top_a = info->top_a->next;
+
     info->size_a--;
 }
 
 void ft_remove_front_b(t_info *info)
 {
-    t_num *tmp;
+    // t_num *tmp;
+    
+    // if (info->size_b == 0)
+    //     return ;
+    // tmp = info->top_b->next;
+    // info->head_b->next = tmp;
+    // free(info->top_b);
+    // info->top_b = tmp;
+    // // tmp = NULL;
+
+    // info->size_b--;
     
     if (info->size_b == 0)
         return ;
-    tmp = info->top_b->next;
-    info->head_b->next = tmp;
+    info->head_b->next = info->top_b->next;
     free(info->top_b);
-    info->top_b = tmp;
-    // tmp = NULL;
+    info->top_b = info->top_b->next;
 
     info->size_b--;
 }

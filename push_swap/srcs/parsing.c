@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:28:52 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/05 20:30:18 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/05 21:45:57 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int *parsing(char **av, int *arr_size, int *nums)
     check_is_int(av);
     *arr_size = get_array_size(av);
     size = *arr_size;
-    nums = NULL;
+    // nums = NULL;
     nums = get_num_array(av, size);
     check_is_sorted(nums, size);
     check_is_overlap(nums, size);

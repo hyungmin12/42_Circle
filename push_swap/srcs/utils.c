@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 20:24:21 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/05 20:00:03 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/05 21:43:51 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,11 @@ void free_str(char **str)
     while (str[i])
     {
         free(str[i]);
+        str[i] = NULL;
         i++;
     }
     free(str);
+    str = NULL;
 }
 
 void check_is_digit(const char *str)
