@@ -6,25 +6,25 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 17:08:24 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/05 20:16:37 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/07 17:52:06 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void free_stack_b(t_info *info)
-{
-	t_num *tmp;
+// void free_stack_b(t_info *info)
+// {
+// 	t_num *tmp;
 
-	tmp = info->top_b;
-	while (info->size_b)
-	{
-		tmp = tmp->next;
-		free(tmp);
-		info->size_b--;
-	}
-	free(tmp->next);
-}
+// 	tmp = info->top_b;
+// 	while (info->size_b)
+// 	{
+// 		tmp = tmp->next;
+// 		free(tmp);
+// 		info->size_b--;
+// 	}
+// 	free(tmp->next);
+// }
 
 void    max_top(t_info *info)
 {
@@ -108,4 +108,5 @@ void ft_sort_every_nums(t_info *info)
 		// 	chunk = 30;
 		a_to_b(info, chunk);
 		b_to_a(info);
+		// free_stack_b(info);
 }

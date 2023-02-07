@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:23:14 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/07 16:46:39 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/07 20:25:05 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void	ft_change_array_to_stack(t_info *info, int *array, int size) // 단방향
         new_node->next = info->head_a->next;
         info->head_a->next = new_node;
         info->top_a = new_node;
-        // free(new_node);
         size--;
     }
+    // free(new_node);
 }
 
 void    ft_nums_array_change_to_stack(t_info *info, int arr_size)
@@ -81,6 +81,7 @@ void    ft_nums_array_change_to_stack(t_info *info, int arr_size)
         tmp = tmp->next;
         i++;
     }
+    free(tmp);
 }
 
 void ft_sort(t_info *info)
@@ -98,7 +99,7 @@ void ft_sort(t_info *info)
         ft_sort_size_four(info);
     else if (info->size_a == 5)
         ft_sort_size_five(info);
-    else
+    else if (info->size_a > 5)
         ft_sort_every_nums(info);
 }
 
@@ -184,25 +185,48 @@ void quick_sort(int *arr, int start, int end)
     quick_sort(arr, j+1, end); //피봇 중심으로 오른쪽부분 분할
 }
 
-void free_stack(t_info *info)
+void free_stack_a(t_num **stack_a)
 {
-    t_num *tmp;
+    t_num	*last_lst;
 
-    tmp = info->head_a;
-    while (tmp)
-    {
-        tmp = tmp->next;
-        free(tmp);
-        info->head_a = tmp;
-    }
-    free(info->head_b);
+	last_lst = *stack_a;
+	if (stack_a != NULL || *stack_a != NULL)
+	{
+		while (*stack_a)
+		{
+			*stack_a = last_lst->next;
+			free(last_lst);
+			last_lst = *stack_a;
+		}
+	}
 }
+
+void free_stack_b(t_num **stack_b)
+{
+    t_num	*last_lst;
+
+	last_lst = *stack_b;
+	if (stack_b != NULL || *stack_b != NULL)
+	{
+		while (*stack_b)
+		{
+			*stack_b = last_lst->next;
+			free(last_lst);
+			last_lst = *stack_b;
+		}
+	}
+}
+
+void	check_leak(void)
+{
+	system("leaks --list -- push_swap");
+}
+
 int main(int ac, char **av)
 {
     int arr_size;
     int *nums;
     t_info *info;
-    system("leaks --list -- push_swap");
     
     nums = NULL;
     if (ac < 2)
@@ -217,8 +241,12 @@ int main(int ac, char **av)
     ft_change_array_to_stack(info, info->array, arr_size);
     free(nums);
     free(info->array);
-    // ft_sort(info);
-    free_stack(info);
+    ft_sort(info);
+    free_stack_a(&info->top_a);
+    free_stack_a(&info->top_b);
     free(info);
+    info = NULL;
+  // 프로그램이 종료되면 아래 함수를 호출한다.
+	// atexit(check_leak);
     return 0;
 }

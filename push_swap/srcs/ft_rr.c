@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:05:35 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/07 16:12:34 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/07 20:16:41 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,50 +88,68 @@ void    ft_list_add_front_b(t_info *info, int data)
 
 void ft_remove_front_a(t_info *info)
 {
-    // t_num *tmp;
+    t_num *tmp;
     
-    // if (info->size_a == 0)
-    //     return ;
-    // tmp = info->top_a->next;
-    // info->head_a->next = tmp;
-    // free(info->top_a);
-    // info->top_a = tmp;
-    // // tmp = NULL;
-    // // free(tmp);
-    // info->size_a--;
-
-    if (info->size_b == 0)
+    if (info->size_a == 0)
         return ;
-    info->head_a->next = info->top_a->next;
+    tmp = info->top_a->next;
+    info->head_a->next = tmp;
     free(info->top_a);
-    info->top_a = info->top_a->next;
-
+    info->top_a = tmp;
+    // tmp = NULL;
+    // free(tmp);
     info->size_a--;
+
+    // if (info->size_b == 0)
+    //     return ;
+    // info->head_a->next = info->top_a->next;
+    // // free(info->top_a);
+    // info->top_a = info->top_a->next;
+
+    // info->size_a--;
+    // t_num	*tmp;
+    // // printf("aaaaa");
+	// if (!info->top_a)
+	// 	return ;
+	// tmp = info->top_a;
+    // info->top_a = info->top_a->next;
+	// free(tmp);
+    
+	// info->size_a--;
 }
 
 void ft_remove_front_b(t_info *info)
 {
-    // t_num *tmp;
-    
-    // if (info->size_b == 0)
-    //     return ;
-    // tmp = info->top_b->next;
-    // info->head_b->next = tmp;
-    // free(info->top_b);
-    // info->top_b = tmp;
-    // // tmp = NULL;
-
-    // info->size_b--;
+    t_num *tmp;
     
     if (info->size_b == 0)
         return ;
-    info->head_b->next = info->top_b->next;
+    tmp = info->top_b->next;
+    info->head_b->next = tmp;
     free(info->top_b);
-    info->top_b = info->top_b->next;
+    info->top_b = tmp;
+    // tmp = NULL;
 
     info->size_b--;
-}
+    
+    // if (info->size_b == 0)
+    //     return ;
+    // info->head_b->next = info->top_b->next;
+    // // free(info->top_b);
+    // info->top_b = info->top_b->next;
+    // info->size_b--;
 
+    // info->size_b--;
+    // t_num	*tmp;
+    // // printf("aaaaa");
+	// if (!info->top_b)
+	// 	return ;
+	// tmp = info->top_b;
+    // info->top_b = info->top_b->next;
+	// free(tmp);
+    
+	// info->size_b--;
+}
 void ft_remove_back_a(t_info *info)
 {
     t_num *pri = info->head_a;

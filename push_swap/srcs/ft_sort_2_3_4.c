@@ -6,7 +6,7 @@
 /*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:43:37 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/05 15:49:27 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/07 19:54:39 by hyyoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	get_bottom_a(t_info *info)
         info->bottom_a_content = tmp->content;
 		tmp = tmp->next;
 	}
+	free(tmp);
 }
 
 void ft_sort_size_three(t_info *info)
@@ -43,7 +44,7 @@ void ft_sort_size_three(t_info *info)
     if (t > m && t < b && m < t && m < b && b > t && b > m)
         ft_sa(info);
     if (t < m && t > b && m > t && m > b && b < m && b < t)
-    {
+    { 
         ft_rra(info, "rra\n");
     }
     if (t > m && t > b && m < t && m < b && b > m && b < t)
