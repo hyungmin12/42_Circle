@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sort_2_3_4.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:43:37 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/07 19:54:39 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/07 21:21:17 by yuhyeongmin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	get_bottom_a(t_info *info)
         info->bottom_a_content = tmp->content;
 		tmp = tmp->next;
 	}
-	free(tmp);
+	// free(tmp);
 }
 
 void ft_sort_size_three(t_info *info)

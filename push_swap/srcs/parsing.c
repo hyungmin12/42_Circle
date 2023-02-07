@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:28:52 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/05 21:45:57 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/07 20:45:08 by yuhyeongmin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void check_is_sorted(int *nums, int size)
 
 void    check_is_overlap(int *nums, int size)
 {
-    int location;
-    int value;
+    // int location;
+    // int value;
     int i;
     int j;
  
@@ -78,8 +78,8 @@ void    check_is_overlap(int *nums, int size)
         {
             if (nums[i] == nums[j])
             {
-                location = i;
-                value = nums[i];
+                // location = i;
+                // value = nums[i];
                     ft_error_msg("Error\n");
                 return ;
             }

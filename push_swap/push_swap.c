@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:23:14 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/07 20:25:05 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/07 21:30:08 by yuhyeongmin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,19 @@ t_num   *ft_init_stack() // 단방향
 
 t_info    *ft_init_info()
 {
-    t_num *stack_a;
+    // t_num *stack_a;
     t_info *rt;
 
-    stack_a = NULL;
+    // stack_a = NULL;
     rt = (t_info *)malloc(sizeof(t_info));
     if (!rt)
         return (NULL);
     rt->array = NULL;
     rt->size_a = 0;
-    stack_a = ft_init_stack();
-    rt->top_a = stack_a;
+    // stack_a = ft_init_stack();
+    // rt->top_a = stack_a;
+    rt->top_a = NULL;
+    rt->top_b = NULL;
     rt->bottom_a_content = 0;
 	rt->bottom_b_content = 0;
     rt->head_a = NULL;
@@ -53,9 +55,11 @@ void	ft_change_array_to_stack(t_info *info, int *array, int size) // 단방향
 {
     t_num   *new_node;
 
-    info->head_a = ft_init_stack();
+    info->head_b = ft_init_stack();
     while (0 < size)
     {
+        if (info->size_a == 0)
+            info->head_a = ft_init_stack();
         info->size_a++;
         new_node = ft_init_stack();
         new_node->content = array[size - 1];
@@ -64,7 +68,6 @@ void	ft_change_array_to_stack(t_info *info, int *array, int size) // 단방향
         info->top_a = new_node;
         size--;
     }
-    // free(new_node);
 }
 
 void    ft_nums_array_change_to_stack(t_info *info, int arr_size)
@@ -215,12 +218,13 @@ void free_stack_b(t_num **stack_b)
 			last_lst = *stack_b;
 		}
 	}
+    // free(info->top_a);
 }
 
-void	check_leak(void)
-{
-	system("leaks --list -- push_swap");
-}
+// void	check_leak(void)
+// {
+// 	system("leaks --list -- push_swap");
+// }
 
 int main(int ac, char **av)
 {
@@ -243,10 +247,10 @@ int main(int ac, char **av)
     free(info->array);
     ft_sort(info);
     free_stack_a(&info->top_a);
-    free_stack_a(&info->top_b);
+    free_stack_b(&info->top_b);
+    free(info->head_a);
+    free(info->head_b);
     free(info);
-    info = NULL;
-  // 프로그램이 종료되면 아래 함수를 호출한다.
 	// atexit(check_leak);
     return 0;
 }

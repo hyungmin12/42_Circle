@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:53:52 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/08/13 18:29:28 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/07 20:45:20 by yuhyeongmin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 size_t	ft_len(char const *src, unsigned int idx, size_t len)
 {
 	size_t	size;
-	size_t	start;
+	// size_t	start;
 
-	start = idx;
+	// start = idx;
 	size = ft_strlen(src) - idx + 1;
 	if (size < len)
 		return (size);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rr.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:05:35 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/07 20:16:41 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/02/07 21:19:11 by yuhyeongmin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,20 @@ void    ft_list_add_front_a(t_info *info, int data)
 {
     t_num *new;
 
-    new = ft_init_stack();
+    new = NULL;
     if (info->size_a == 0)
     {
-        info->head_a = ft_init_stack();
-        info->head_a->next = info->top_a;
+        // info->head_a = ft_init_stack();
         info->top_a = ft_init_stack();
+        // info->top_a = new;
+        info->head_a->next = info->top_a;
         info->head_a->next = info->top_a;
         info->top_a->next = NULL;
         info->top_a->content = data;
     }
     else
     {
+        new = ft_init_stack();
         new->next = info->top_a;
         info->head_a->next = new;
         new->content = data;
@@ -66,10 +68,10 @@ void    ft_list_add_front_b(t_info *info, int data)
 {
     t_num *new;
 
-    new = ft_init_stack();
     if (info->size_b == 0)
     {
-        info->head_b = ft_init_stack();
+        // info->head_b = ft_init_stack();
+        // info->head_b = NULL;
         info->head_b->next = info->top_b;
         info->top_b = ft_init_stack();
         info->head_b->next = info->top_b;
@@ -78,6 +80,7 @@ void    ft_list_add_front_b(t_info *info, int data)
     }
     else
     {
+        new = ft_init_stack();
         new->next = info->top_b;
         info->head_b->next = new;
         new->content = data;
