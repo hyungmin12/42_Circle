@@ -6,73 +6,38 @@
 /*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 20:43:37 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/07 21:21:17 by yuhyeongmin      ###   ########.fr       */
+/*   Updated: 2023/02/09 16:22:13 by yuhyeongmin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	get_bottom_a(t_info *info)
+void	ft_sort_size_three(t_info *info)
 {
-	t_num *tmp;
-
-	tmp = info->top_a;
-	while (tmp != NULL)
-	{
-        info->bottom_a_content = tmp->content;
-		tmp = tmp->next;
-	}
-	// free(tmp);
-}
-
-void ft_sort_size_three(t_info *info)
-{
-    int t;
-    int m;
-    int b;
+	int	t;
+	int	m;
+	int	b;
 
 	get_bottom_a(info);
-    t = info->top_a->content;
-    m = info->top_a->next->content;
-    b = info->bottom_a_content;
-    
-    if (t < m && t < b && m > b && m > t && b > t && b < m)
-    {
-        ft_sa(info);
-        ft_ra(info, "ra\n");
-    }
-    if (t > m && t < b && m < t && m < b && b > t && b > m)
-        ft_sa(info);
-    if (t < m && t > b && m > t && m > b && b < m && b < t)
-    { 
-        ft_rra(info, "rra\n");
-    }
-    if (t > m && t > b && m < t && m < b && b > m && b < t)
-    {
-        ft_ra(info, "ra\n");
-    }
-    if (t > m && t > b && m < t && m > b && b < t && b < m)
-    {
-        ft_sa(info);
-        ft_rra(info, "rra\n");
-    }
-}
-
-int	get_index(t_info *info, int data)
-{
-	t_num	*tmp;
-	int		index;
-
-	index = 0;
-	tmp = info->top_a;
-	while (tmp != NULL)
+	t = info->top_a->content;
+	m = info->top_a->next->content;
+	b = info->bottom_a_content;
+	if (t < m && t < b && m > b && m > t && b > t && b < m)
 	{
-		if (tmp->content == data)
-			return (index);
-		tmp = tmp->next;
-		index++;
+		ft_sa(info);
+		ft_ra(info, "ra\n");
 	}
-	return (-1);
+	if (t > m && t < b && m < t && m < b && b > t && b > m)
+		ft_sa(info);
+	if (t < m && t > b && m > t && m > b && b < m && b < t)
+		ft_rra(info, "rra\n");
+	if (t > m && t > b && m < t && m < b && b > m && b < t)
+		ft_ra(info, "ra\n");
+	if (t > m && t > b && m < t && m > b && b < t && b < m)
+	{
+		ft_sa(info);
+		ft_rra(info, "rra\n");
+	}
 }
 
 void	ft_sort_size_four(t_info *info)
@@ -88,7 +53,7 @@ void	ft_sort_size_four(t_info *info)
 			ft_rra(info, "rra\n");
 	ft_pb(info);
 	ft_sort_size_three(info);
-    ft_pa(info);
+	ft_pa(info);
 }
 
 void	if_case_two(t_info *info, int a_b, int sort)
@@ -123,12 +88,12 @@ void	ft_sort_size_five(t_info *info)
 			ft_pb(info);
 		else if (info->top_a->content == 1)
 			ft_pb(info);
-        else
+		else
 			ft_ra(info, "ra\n");
 	}
 	ft_sb(info);
 	if_case_two(info, 1, 0);
 	ft_sort_size_three(info);
-    ft_pa(info);
-    ft_pa(info);
+	ft_pa(info);
+	ft_pa(info);
 }

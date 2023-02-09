@@ -6,7 +6,7 @@
 /*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 14:53:52 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/07 20:45:20 by yuhyeongmin      ###   ########.fr       */
+/*   Updated: 2023/02/09 16:51:07 by yuhyeongmin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 size_t	ft_len(char const *src, unsigned int idx, size_t len)
 {
 	size_t	size;
-	// size_t	start;
 
-	// start = idx;
 	size = ft_strlen(src) - idx + 1;
 	if (size < len)
 		return (size);

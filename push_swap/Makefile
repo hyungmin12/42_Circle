@@ -6,10 +6,15 @@ SRCS		=	push_swap.c \
 				./srcs/parsing.c \
 				./srcs/arr.c \
 				./srcs/utils.c \
-				./srcs/ft_ss_pa_pb.c \
-				./srcs/ft_rr.c \
+				./srcs/utils2.c \
+				./srcs/ft_init_and_free.c \
+				./srcs/ft_add_and_del.c \
+				./srcs/ft_add_and_del2.c \
+				./srcs/ft_pp_rr.c \
 				./srcs/ft_rrr.c \
+				./srcs/ft_ss.c \
 				./srcs/ft_sort_2_3_4.c \
+				./srcs/ft_sort_utils.c \
 				./srcs/ft_sort.c \
 			
 OBJS		= $(SRCS:%.c=%.o)
