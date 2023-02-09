@@ -6,7 +6,7 @@
 /*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:28:52 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/09 17:37:44 by yuhyeongmin      ###   ########.fr       */
+/*   Updated: 2023/02/09 17:47:00 by yuhyeongmin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ void	check_is_int(char **av)
 				|| av[i][j] == ' ' || av[i][j] == '-')
 				j++;
 			else
+			{
 				ft_error_msg();
+			}
 		}
 		i++;
 	}
@@ -54,6 +56,7 @@ void	check_is_sorted(int *nums, int size)
 	}
 	if (check == size - 1)
 	{
+		free(nums);
 		ft_error_msg();
 	}
 }
@@ -72,6 +75,7 @@ void	check_is_overlap(int *nums, int size)
 		{
 			if (nums[i] == nums[j])
 			{
+				free(nums);
 				ft_error_msg();
 				return ;
 			}

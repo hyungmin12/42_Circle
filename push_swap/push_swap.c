@@ -6,7 +6,7 @@
 /*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:23:14 by hyyoo             #+#    #+#             */
-/*   Updated: 2023/02/09 16:50:29 by yuhyeongmin      ###   ########.fr       */
+/*   Updated: 2023/02/09 17:47:57 by yuhyeongmin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	main(int ac, char **av)
 
 	nums = NULL;
 	if (ac < 2)
-		ft_error_msg("Error\n");
+		ft_error_msg();
 	nums = parsing(av, &arr_size, nums);
 	info = ft_init_info();
 	ft_int_cpy(info, nums, arr_size);
