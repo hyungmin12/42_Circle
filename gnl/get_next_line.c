@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyyoo <hyyoo@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 17:46:26 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/09/16 19:47:04 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/07/29 14:42:12 by yuhyeongmin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*get_next_line(int fd)
 	save_buf = ft_cut(str);
 	return (str);
 }
-/*
+
 #include <fcntl.h>
 #include <stdio.h>
 
@@ -99,6 +99,7 @@ int main(void)
 
   fd = 1;
   fd = open("./test", O_RDONLY);
+  printf("%d\n",fd);
   char *line = get_next_line(fd);
   printf("%p\n", line);
   printf("%s", get_next_line(fd));
@@ -110,4 +111,4 @@ int main(void)
   //printf("%s", line);
   //free(line);
   return (0);
-}*/
+}

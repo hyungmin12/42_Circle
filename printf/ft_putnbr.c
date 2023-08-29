@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:57:56 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/09/22 17:43:21 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/07/23 21:43:22 by yuhyeongmin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+1234
+
 
 int	ft_putnbr(long n)
 {
@@ -29,7 +32,7 @@ int	ft_putnbr(long n)
 	}
 	else
 	{
-		i += ft_putchar(n + 48);
+		i = ft_putchar(n + 48);
 		if (i == -1)
 			return (-1);
 	}

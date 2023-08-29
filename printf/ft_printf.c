@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyyoo <hyyoo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yuhyeongmin <yuhyeongmin@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:19:15 by hyyoo             #+#    #+#             */
-/*   Updated: 2022/09/22 17:39:37 by hyyoo            ###   ########.fr       */
+/*   Updated: 2023/08/22 20:46:39 by yuhyeongmin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,14 @@ int	ft_printf(const char *str, ...)
 	}
 	va_end(ap);
 	return (count);
+}
+
+#include <stdio.h>
+int main(){
+	int len = 0;
+	len = ft_putnbr(-42);
+	printf("\n");
+	printf("%d\n", len);
+	len = printf("%d\n", -42);
+	printf("%d\n", len);
 }
